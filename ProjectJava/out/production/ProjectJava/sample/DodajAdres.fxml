@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddPlayerController">
+   <children>
+      <TextField fx:id="miejscowoscTXT" layoutX="226.0" layoutY="62.0" promptText="Miejscowość" />
+      <TextField fx:id="ulicaTXT" layoutX="226.0" layoutY="126.0" promptText="Ulica" />
+      <TextField fx:id="nrDomuTXT" layoutX="226.0" layoutY="188.0" promptText="Numer domu" />
+      <TextField fx:id="kodTXT" layoutX="226.0" layoutY="246.0" promptText="kod pocztowy" />
+      <Button layoutX="275.0" layoutY="306.0" mnemonicParsing="false" onAction="#insertAdres" text="Add" />
+   </children>
+</AnchorPane>
