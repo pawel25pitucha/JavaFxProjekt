@@ -6,14 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        primaryStage.setTitle("Hello World");
+        Parent root = FXMLLoader.load(getClass().getResource("viewsFXML/login.fxml"));
+        primaryStage.setTitle("Aplikacja");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 827, 560));
         primaryStage.show();
@@ -22,6 +20,5 @@ public class Main extends Application {
 
     public static void main(String[] args)  {
         launch(args);
-
     }
 }

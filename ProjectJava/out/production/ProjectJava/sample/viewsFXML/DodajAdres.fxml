@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddPlayerController">
+   <children>
+      <TextField fx:id="miejscowoscTXT" layoutX="226.0" layoutY="107.0" promptText="Miejscowość" />
+      <TextField fx:id="ulicaTXT" layoutX="226.0" layoutY="155.0" promptText="Ulica" />
+      <TextField fx:id="nrDomuTXT" layoutX="226.0" layoutY="200.0" promptText="Numer domu" />
+      <TextField fx:id="kodTXT" layoutX="226.0" layoutY="248.0" promptText="kod pocztowy" />
+      <Button fx:id="insertAdres" layoutX="273.0" layoutY="312.0" mnemonicParsing="false" onAction="#insertAdres" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: darkgrey;" text="Dodaj" textFill="WHITE" />
+      <Text fill="#fcfcfc" layoutX="237.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj adres">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#f8f1f1" layoutX="130.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miejscowość:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="158.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ulica:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="132.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer domu:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="130.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kod pocztowy:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="errorMSG2" fill="RED" layoutX="146.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="308.13671875" />
+   </children>
+</AnchorPane>

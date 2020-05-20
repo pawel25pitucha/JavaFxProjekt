@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="956.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="802.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
-      <MenuBar layoutX="329.0" layoutY="15.0" prefHeight="32.0" prefWidth="290.0">
+      <ImageView fitHeight="858.0" fitWidth="802.0" layoutX="-2.0" layoutY="-73.0">
+         <image>
+            <Image url="@../pics/basketball.jpg" />
+         </image>
+      </ImageView>
+      <MenuBar layoutX="256.0" layoutY="14.0" prefHeight="32.0" prefWidth="290.0" style="-fx-background-color: snow;">
         <menus>
           <Menu mnemonicParsing="false" text="Dodaj">
             <items>
@@ -46,11 +57,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </MenuBar>
-      <Button layoutX="758.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="184.0" text="Dodaj nowego Administratora" />
-      <Text layoutX="309.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w panelu administratora!" wrappingWidth="330.13671875">
+      <Button layoutX="307.0" layoutY="583.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="184.0" style="-fx-background-color: darkgrey;" text="Dodaj nowego Administratora" textFill="#f8f8f8" />
+      <Text fill="#00ffc8" layoutX="246.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w panelu administratora!" wrappingWidth="330.13671875">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
+      <Button layoutX="343.0" layoutY="192.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Szukaj zawodnika" />
+      <Button layoutX="343.0" layoutY="260.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Szukaj drużyny" />
    </children>
 </AnchorPane>

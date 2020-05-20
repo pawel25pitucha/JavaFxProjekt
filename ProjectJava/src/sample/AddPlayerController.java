@@ -6,14 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class AddPlayerController {
     @FXML
@@ -25,7 +26,12 @@ public class AddPlayerController {
     @FXML
     private TextField DataTXT;
     @FXML
-    private TextField PlecTXT;
+    private CheckBox kTXT;
+    @FXML
+    private CheckBox mTXT;
+    @FXML
+    private Text errorMSG;
+
     @FXML
     private TextField miejscowoscTXT;
     @FXML
@@ -34,79 +40,71 @@ public class AddPlayerController {
     private TextField nrDomuTXT;
     @FXML
     private TextField kodTXT;
+    @FXML
+    private Text errorMSG2;
 
-    static String pesel;
-    static String imie;
-    static String nazwisko;
-    static String data;
-    static String plec;
+    //Dane zawodnika
+    private static String pesel;
+    private static String imie;
+    private static String nazwisko;
+    private static String data;
+    private static String plec;
 
+    //Dane Adres
+    private static String miejscowosc;
+    private static String ulica;
+    private static String nr;
+    private static String kod;
+    private String dateFormat="yyyy-MM-dd";
 
+///gettery
 
+ public static String getImie(){
+     return imie;
+ }
+ public static String getNazwisko(){
+        return nazwisko;
+ }
+ public static String getMiejscowosc(){
+        return miejscowosc;
+ }
+ public static String getUlica() {
+        return ulica;
+ }
+ public static String getNr() {
+        return nr;
+ }
+ public static String getKod() {
+        return kod;
+ }
 
+//Funkcja posredniczaca dodajaca zawodnika
 
-
-    public void addPlayer(ActionEvent event) throws SQLException, IOException {
+    public void addPlayer(ActionEvent event) throws IOException {
         //zapisanie danych
         pesel=PeselTXT.getText();
         imie=ImieTXT.getText();
         nazwisko=NazwiskoTXT.getText();
         data=DataTXT.getText();
-        plec=PlecTXT.getText();
-        //zamkniecie okna
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+        if(checkDaneOsobowe()){
+            //zamkniecie okna
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
 
-       //zmiana okna
-        changeView("DodajAdres.fxml",event);
-    }
-
-    @FXML
-    public void changeView(String nazwa,ActionEvent event) throws IOException {
-        System.out.println("zmieniam scene");
-        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource(nazwa));
-        Parent root1=fxmlLoader.load();
-        Stage stage=new Stage();
-        stage.setScene(new Scene(root1));
-        stage.show();
-    }
-
-
-    public void select() throws SQLException {
-
-        String sql = "SELECT Imię FROM Zawodnik";
-        String dbURL = "jdbc:sqlserver://localhost:52623;";
-        String username = "admin";
-        String password = "password";
-
-        try {
-
-            Connection conn = DriverManager.getConnection(dbURL, username, password);
-            Statement statement = conn.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            while (result.next()){
-                String name = result.getString(1);
-                System.out.println(name);
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            //zmiana okna
+            changeView("viewsFXML/DodajAdres.fxml");
+        }else{
+            System.out.println("Bledne dane");
         }
     }
+
+    //funkcja dodajaca zawdonika
+
     public void insertZawodnik(int idAdres){
-
-
-        System.out.println(pesel);
         String sql = "INSERT INTO Zawodnik(Adres_id,Pesel,Imię,Nazwisko,Data_urodzenia,Płeć)VALUES (?, ?, ?, ?,?,?)";
-
-        String dbURL = "jdbc:sqlserver://localhost:52623;";
-        String username = "admin";
-        String password = "password";
-
         try {
-            Connection conn = DriverManager.getConnection(dbURL, username, password);
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = ConnectionDB.con.prepareStatement(sql);
             statement.setString(1, String.valueOf(idAdres));
             statement.setString(2, pesel);
             statement.setString(3, imie);
@@ -117,55 +115,115 @@ public class AddPlayerController {
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("A new user was inserted successfully!");
-            }
+                changeView("viewsFXML/sukcesAdd.fxml");
 
-        } catch (SQLException ex) {
+            }
+        } catch (SQLException | IOException ex) {
             ex.printStackTrace();
         }
-
     }
+
+    //Funkcja dodajaca adres powiazany z zawodnikiem
+
     public void insertAdres(ActionEvent event){
-        String miejscowosc=miejscowoscTXT.getText();
-        String ulica=ulicaTXT.getText();
-        String nr=nrDomuTXT.getText();
-        String kod=kodTXT.getText();
+        miejscowosc=miejscowoscTXT.getText();
+        ulica=ulicaTXT.getText();
+        nr=nrDomuTXT.getText();
+        kod=kodTXT.getText();
 
         String sql = "INSERT INTO Adres(Miejscowość,Ulica,Nr_domu,Kod_pocztowy)VALUES (?, ?, ?, ?)";
 
-        String dbURL = "jdbc:sqlserver://localhost:52623;";
-        String username = "admin";
-        String password = "password";
         int id = 0;
-        try {
-            Connection conn = DriverManager.getConnection(dbURL, username, password);
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, miejscowosc);
-            statement.setString(2, ulica);
-            statement.setString(3, nr);
-            statement.setString(4, kod);
+        if(checkDaneAdres()){
+            try {
 
+                PreparedStatement statement = ConnectionDB.con.prepareStatement(sql);
+                statement.setString(1, miejscowosc);
+                statement.setString(2, ulica);
+                statement.setString(3, nr);
+                statement.setString(4, kod);
 
-            int rowsInserted = statement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("A new adress was inserted successfully!");
-                Statement stmt = conn.createStatement();
-                ResultSet result = stmt.executeQuery("SELECT MAX(Id) FROM Adres");
-                System.out.println(result);
-                if (result.next()) { // just in case
-                    id= result.getInt(1); // note that indexes are one-based
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("A new adress was inserted successfully!");
+                    Statement stmt = ConnectionDB.con.createStatement();
+                    ResultSet result = stmt.executeQuery("SELECT MAX(Id) FROM Adres");
+                    System.out.println(result);
+                    if (result.next()) { // just in case
+                        id= result.getInt(1); // note that indexes are one-based
+                    }
+                    Node source = (Node) event.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                    insertZawodnik(id);
                 }
-                insertZawodnik(id);
-
-                Node source = (Node) event.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
+        }else System.out.println("bledne dane adresu");
     }
 
+    ///--------------------Funkcje sprawdzajace wprowadzone dane-------------------------///
 
+    public boolean checkDaneOsobowe() {
+            if (kTXT.isSelected() && mTXT.isSelected() == false) {
+                plec = "k";
+            } else if (mTXT.isSelected() && kTXT.isSelected() == false) {
+                plec = "m";
+            } else {
+                errorMSG.setText("Złe dane dotyczące płci!");
+                return false;
+            }
+            if (pesel.length() == 11 && pesel.chars().allMatch(Character::isDigit)) {
+                System.out.println("pesel ok");
+                if (imie.length() > 0 && imie.chars().allMatch(Character::isLetter)) {
+                    System.out.println("imie ok");
+                    if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter)) {
+                        System.out.println("nazwisko ok");
+                        if (isValid(data)) {
+                            System.out.println("wszystko ok");
+                            return true;
+                        } else errorMSG.setText("Niepoprawny format daty!");
+                    } else errorMSG.setText("Nazwisko nie może zawierać cyfr ");
+                } else errorMSG.setText("Imię nie może zawierać cyfr ");
+            } else errorMSG.setText("Niepoprawny pesel!");
+            return false;
+    }
+    private boolean checkDaneAdres(){
+        if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter)){
+            if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter)){
+                if(nr.length()>0 && nr.chars().allMatch(Character::isDigit)){
+                    if(kod.length()==6){
+                        return true;
+                    }else errorMSG2.setText("Niepoprawny kod pocztowy!");
+                }else errorMSG2.setText("Numer domu nie moze być pusty!");
+            }else errorMSG2.setText("Niepoprawnie wprowadzona nazwa ulicy!");
+        }else errorMSG2.setText("Niepoprawnie wprowadzona nazwa miejscowości!");
+        return false;
+    }
+
+    //czy podana data jest zgodna z formatem bazy danych
+
+    public boolean isValid(String dateStr) {
+        DateFormat sdf = new SimpleDateFormat(this.dateFormat);
+        sdf.setLenient(false);
+        try {
+            sdf.parse(dateStr);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+    //funkcja zmieniajaca okno
+
+    @FXML
+    public void changeView(String nazwa) throws IOException {
+        System.out.println("zmieniam scene");
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource(nazwa));
+        Parent root1=fxmlLoader.load();
+        Stage stage=new Stage();
+        stage.setScene(new Scene(root1));
+        stage.show();
+    }
 }

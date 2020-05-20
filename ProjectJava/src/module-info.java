@@ -3,6 +3,6 @@ module ProjectJava {
     requires javafx.controls;
     requires java.sql;
     requires com.microsoft.sqlserver.jdbc;
-
     opens sample;
+
 }
