@@ -4,5 +4,5 @@ module ProjectJava {
     requires java.sql;
     requires com.microsoft.sqlserver.jdbc;
     opens sample;
-
+    exports sample.models;
 }

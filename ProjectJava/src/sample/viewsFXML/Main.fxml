@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,57 +12,30 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="802.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
-      <ImageView fitHeight="858.0" fitWidth="802.0" layoutX="-2.0" layoutY="-73.0">
+      <ImageView fitHeight="858.0" fitWidth="802.0" layoutY="-75.0">
          <image>
             <Image url="@../pics/basketball.jpg" />
          </image>
       </ImageView>
-      <MenuBar layoutX="256.0" layoutY="14.0" prefHeight="32.0" prefWidth="290.0" style="-fx-background-color: snow;">
-        <menus>
-          <Menu mnemonicParsing="false" text="Dodaj">
-            <items>
-              <MenuItem fx:id="dodajZawodnik" mnemonicParsing="false" onAction="#changeViewAdd" text="Zawodnik" />
-                  <MenuItem mnemonicParsing="false" text="Drużyna" />
-                  <MenuItem mnemonicParsing="false" text="Trener" />
-                  <MenuItem mnemonicParsing="false" text="Sędzia" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Usuń">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Zawodnik" />
-                  <MenuItem mnemonicParsing="false" text="Drużyna" />
-                  <MenuItem mnemonicParsing="false" text="Trener" />
-                  <MenuItem mnemonicParsing="false" text="Sędzia" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Spotkania">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Stwórz" />
-                  <MenuItem mnemonicParsing="false" text="Wyświetl" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Drużyny">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Wyświetl" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Liga">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Wyświetl" />
-               </items>
-            </Menu>
-        </menus>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </MenuBar>
       <Button layoutX="307.0" layoutY="583.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="184.0" style="-fx-background-color: darkgrey;" text="Dodaj nowego Administratora" textFill="#f8f8f8" />
-      <Text fill="#00ffc8" layoutX="246.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w panelu administratora!" wrappingWidth="330.13671875">
+      <Text fill="#00ffc8" layoutX="236.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w panelu administratora!" wrappingWidth="330.13671875">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="343.0" layoutY="192.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Szukaj zawodnika" />
-      <Button layoutX="343.0" layoutY="260.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Szukaj drużyny" />
+      <Button fx:id="Zawodnicy" layoutX="40.0" layoutY="30.0" mnemonicParsing="false" onAction="#changeViewZawodnik" prefHeight="43.0" prefWidth="116.0" text="Zawodnicy" />
+      <Button layoutX="188.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Drużyny" />
+      <Button layoutX="474.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="110.0" text="Trenerzy" />
+      <Button layoutX="632.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" text="Sędziowie" />
+      <Button layoutX="329.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="110.0" text="Spotkania" />
+      <BarChart fx:id="wykresPoziom" layoutX="32.0" layoutY="170.0" prefHeight="271.0" prefWidth="361.0" style="-fx-background-color: snow;" title="Ilość zawodników w przedziałach wiekowych">
+        <xAxis>
+          <CategoryAxis fx:id="X" label="Wiek" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="ilość" side="LEFT" upperBound="30.0" />
+        </yAxis>
+      </BarChart>
+      <Button layoutX="187.0" layoutY="450.0" mnemonicParsing="false" onAction="#odswiez" text="refresh" />
    </children>
 </AnchorPane>

@@ -26,6 +26,8 @@ public class AddPlayerController {
     @FXML
     private TextField DataTXT;
     @FXML
+    private TextField poziomTXT;
+    @FXML
     private CheckBox kTXT;
     @FXML
     private CheckBox mTXT;
@@ -49,6 +51,7 @@ public class AddPlayerController {
     private static String nazwisko;
     private static String data;
     private static String plec;
+    private static String poziom;
 
     //Dane Adres
     private static String miejscowosc;
@@ -86,6 +89,8 @@ public class AddPlayerController {
         imie=ImieTXT.getText();
         nazwisko=NazwiskoTXT.getText();
         data=DataTXT.getText();
+        poziom=poziomTXT.getText();
+
         if(checkDaneOsobowe()){
             //zamkniecie okna
             Node source = (Node) event.getSource();
@@ -102,7 +107,7 @@ public class AddPlayerController {
     //funkcja dodajaca zawdonika
 
     public void insertZawodnik(int idAdres){
-        String sql = "INSERT INTO Zawodnik(Adres_id,Pesel,Imię,Nazwisko,Data_urodzenia,Płeć)VALUES (?, ?, ?, ?,?,?)";
+        String sql = "INSERT INTO Zawodnik(Adres_id,Pesel,Imię,Nazwisko,Data_urodzenia,Płeć,Poziom)VALUES (?, ?, ?, ?,?,?,?)";
         try {
             PreparedStatement statement = ConnectionDB.con.prepareStatement(sql);
             statement.setString(1, String.valueOf(idAdres));
@@ -111,6 +116,7 @@ public class AddPlayerController {
             statement.setString(4, nazwisko);
             statement.setString(5, data);
             statement.setString(6, plec);
+            statement.setString(7, poziom);
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
@@ -122,7 +128,6 @@ public class AddPlayerController {
             ex.printStackTrace();
         }
     }
-
     //Funkcja dodajaca adres powiazany z zawodnikiem
 
     public void insertAdres(ActionEvent event){
@@ -181,8 +186,11 @@ public class AddPlayerController {
                     if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter)) {
                         System.out.println("nazwisko ok");
                         if (isValid(data)) {
-                            System.out.println("wszystko ok");
-                            return true;
+                            System.out.println("data ok");
+                            if(poziom.equals("Senior") || poziom.equals("Młodzik") || poziom.equals("Junior")){
+                                System.out.println("wszystko ok");
+                                return true;
+                            }else errorMSG.setText("Błedne dane poziom!");
                         } else errorMSG.setText("Niepoprawny format daty!");
                     } else errorMSG.setText("Nazwisko nie może zawierać cyfr ");
                 } else errorMSG.setText("Imię nie może zawierać cyfr ");

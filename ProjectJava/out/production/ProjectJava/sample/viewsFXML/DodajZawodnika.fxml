@@ -19,7 +19,7 @@
       <TextField fx:id="ImieTXT" layoutX="334.0" layoutY="168.0" promptText="Imię" />
       <TextField fx:id="NazwiskoTXT" layoutX="334.0" layoutY="227.0" promptText="Nazwisko" />
       <TextField fx:id="DataTXT" layoutX="334.0" layoutY="289.0" promptText="yyyy-MM-dd" />
-      <Button fx:id="DodajBTN" layoutX="351.0" layoutY="403.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: darkgrey;" styleClass="hover" text="Dodaj" textFill="WHITE" />
+      <Button fx:id="DodajBTN" layoutX="351.0" layoutY="441.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: darkgrey;" styleClass="hover" text="Dodaj" textFill="WHITE" />
       <CheckBox fx:id="mTXT" layoutX="364.0" layoutY="333.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="90.0" text="mężczyzna" textFill="WHITE" />
       <CheckBox fx:id="kTXT" layoutX="364.0" layoutY="357.0" mnemonicParsing="false" text="kobieta" textFill="#f8f8f8" />
       <Label layoutX="281.0" layoutY="115.0" prefHeight="17.0" prefWidth="42.0" text="Pesel:" textFill="WHITE">
@@ -42,6 +42,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Text fx:id="errorMSG" fill="RED" layoutX="222.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="363.13671875" />
+      <Text fx:id="errorMSG" fill="RED" layoutX="227.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="363.13671875" />
+      <Text fill="WHITE" layoutX="282.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poziom:" wrappingWidth="61.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="poziomTXT" layoutX="334.0" layoutY="390.0" promptText="Młodzik/Junior/Senior" />
    </children>
 </AnchorPane>
