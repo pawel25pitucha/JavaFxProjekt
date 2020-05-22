@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.models.PlayerModel;
@@ -37,9 +38,13 @@ public class ZawodnicyController {
     private TableColumn<PlayerModel,String> peselCol;
     @FXML
     private TableColumn<PlayerModel,String> poziomCol;
+    @FXML
+    private TextField searchTXT;
+    private String search;
 
 
     ObservableList<PlayerModel> oblist = FXCollections.observableArrayList();
+    ObservableList<PlayerModel> oblistFiltered = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() throws SQLException {
@@ -57,8 +62,6 @@ public class ZawodnicyController {
         poziomCol.setCellValueFactory(new PropertyValueFactory<PlayerModel,String>("poziom"));
         table.setItems(oblist);
     }
-
-
 
     public void changeViewAdd(ActionEvent event) throws IOException {
         Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/DodajZawodnika.fxml"));
@@ -99,5 +102,35 @@ public class ZawodnicyController {
         Stage window=new Stage();
         window.setScene(scene2);
         window.show();
+    }
+
+
+
+    //szukanie zawodnika po imieniu nazwisku i peselu
+    public void searchPlayer() throws SQLException {
+        System.out.println("Szukam");
+        oblistFiltered.clear();
+        search=searchTXT.getText();
+        if(!search.isEmpty()){
+            for(PlayerModel player : oblist){
+                System.out.println(player.getImie());
+                if(player.getPesel().equals(search)){
+                    oblistFiltered.add(player);
+                }else if(player.getImie().toLowerCase().equals(search.toLowerCase())){
+                    oblistFiltered.add(player);
+                }else if(player.getNazwisko().toLowerCase().equals(search.toLowerCase())){
+                    oblistFiltered.add(player);
+                }else if(player.getPoziom().toLowerCase().equals(search.toLowerCase())){
+                    oblistFiltered.add(player);
+                }
+            }
+            if(!oblistFiltered.isEmpty()){
+                table.getItems().clear();
+                table.setItems(oblistFiltered);
+            }
+        } else {
+            initialize();
+        }
+
     }
 }

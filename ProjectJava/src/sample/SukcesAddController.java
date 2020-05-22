@@ -27,9 +27,15 @@ public class SukcesAddController {
     }
     @FXML
     public void initialize() {
-        imiePrint.setText(AddPlayerController.getImie());
-        nazwiskoPrint.setText(AddPlayerController.getNazwisko());
-        adresPrint.setText(AddPlayerController.getMiejscowosc()+"  "+AddPlayerController.getUlica()+"  "+AddPlayerController.getNr()+"  "+AddPlayerController.getKod());
+        if(AddPlayerController.getImie()==null){
+            imiePrint.setText(AddTrenerController.getImie());
+            nazwiskoPrint.setText(AddTrenerController.getNazwisko());
+            adresPrint.setText(AddTrenerController.getMiejscowosc()+"  "+AddTrenerController.getUlica()+"  "+AddTrenerController.getNr()+"  "+AddTrenerController.getKod());
+        }else{
+            imiePrint.setText(AddPlayerController.getImie());
+            nazwiskoPrint.setText(AddPlayerController.getNazwisko());
+            adresPrint.setText(AddPlayerController.getMiejscowosc()+"  "+AddPlayerController.getUlica()+"  "+AddPlayerController.getNr()+"  "+AddPlayerController.getKod());
+        }
     }
 
 

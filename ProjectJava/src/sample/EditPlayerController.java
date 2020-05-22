@@ -97,7 +97,8 @@ public class EditPlayerController {
             System.out.println("Bledne dane");
         }
     }
-    public static void updateZawodnik(String id) throws SQLException {
+    public static void updateZawodnik() throws SQLException {
+            String id=getId();
         String sql1 = "UPDATE Zawodnik SET Pesel="+"'"+pesel+"'"+"WHERE Id="+"'"+id+"'";
         String sql2 = "UPDATE Zawodnik SET Imię="+"'"+imie+"'"+"WHERE Id="+"'"+id+"'";
         String sql3 = "UPDATE Zawodnik SET Nazwisko="+"'"+nazwisko+"'"+"WHERE Id="+"'"+id+"'";
@@ -113,6 +114,15 @@ public class EditPlayerController {
             stmt.executeUpdate(sql5);
             stmt.executeUpdate(sql6);
 
+    }
+
+   private static String getId() throws SQLException {
+        String id = null;
+        ResultSet result = ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Zawodnik WHERE Pesel=" + "'" + pesel + "'");
+        while (result.next()) {
+            id = result.getString("Id");
+        }
+        return id;
     }
 
     public boolean checkDaneOsobowe() {

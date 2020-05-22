@@ -72,6 +72,39 @@ public class MainController {
         window.setResizable(false);
         window.show();
     }
+    public void changeViewTrener(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
 
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trenerzy.fxml"));
+        Scene scene2=new Scene(view2);
+        Stage window=new Stage();
+        window.setScene(scene2);
+        window.setResizable(false);
+        window.show();
+    }
+
+    public void addNewAdmin() throws IOException {
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/newAdmin.fxml"));
+        Scene scene2=new Scene(view2);
+        Stage window=new Stage();
+        window.setScene(scene2);
+        window.setResizable(false);
+        window.show();
+    }
+    public void wyloguj(ActionEvent event) throws SQLException, IOException {
+        ConnectionDB.con.close();
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/login.fxml"));
+        Scene scene2=new Scene(view2);
+        Stage window=new Stage();
+        window.setScene(scene2);
+        window.setResizable(false);
+        window.show();
+    }
 
 }

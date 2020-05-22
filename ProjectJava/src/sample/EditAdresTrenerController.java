@@ -7,18 +7,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class EditAdresController {
+public class EditAdresTrenerController {
     //Dane Adres
     private static String miejscowosc;
     private static String ulica;
     private static String nr;
     private static String kod;
-    private static String pesel = ZawodnicyController.getPesel();
+    private static String pesel = TrenerzyController.getPesel();
     @FXML
     private TextField miejscowoscTXT;
     @FXML
@@ -38,7 +37,7 @@ public class EditAdresController {
 
     public void loadData() throws SQLException {
         Statement stmt = ConnectionDB.con.createStatement();
-        ResultSet result = stmt.executeQuery("SELECT * FROM Adres INNER JOIN Zawodnik ON Adres.Id=Zawodnik.Adres_Id WHERE Pesel=" + "'" + pesel + "'");
+        ResultSet result = stmt.executeQuery("SELECT * FROM Adres INNER JOIN Trener ON Adres.Id=Trener.Adres_Id WHERE Pesel=" + "'" + pesel + "'");
         while (result.next()) {
             miejscowosc = result.getString("Miejscowość");
             ulica = result.getString("Ulica");
@@ -53,13 +52,12 @@ public class EditAdresController {
 
     private String getId() throws SQLException {
         String id = null;
-        ResultSet result = ConnectionDB.con.createStatement().executeQuery("SELECT Adres_Id FROM Zawodnik WHERE Pesel=" + "'" + pesel + "'");
+        ResultSet result = ConnectionDB.con.createStatement().executeQuery("SELECT Adres_Id FROM Trener WHERE Pesel=" + "'" + pesel + "'");
         while (result.next()) {
             id = result.getString("Adres_Id");
         }
         return id;
     }
-
 
     public void updateAdres(ActionEvent event) throws SQLException {
         miejscowosc = miejscowoscTXT.getText();
@@ -83,7 +81,8 @@ public class EditAdresController {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
-            EditPlayerController.updateZawodnik();
+            EditTrenerController.updateTrener();
+
         }else System.out.println("bledne dane adresu");
     }
 

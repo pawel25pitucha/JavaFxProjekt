@@ -17,17 +17,17 @@
             <Image url="@../pics/basketball.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="307.0" layoutY="583.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="184.0" style="-fx-background-color: darkgrey;" text="Dodaj nowego Administratora" textFill="#f8f8f8" />
+      <Button layoutX="307.0" layoutY="583.0" mnemonicParsing="false" onAction="#addNewAdmin" prefHeight="33.0" prefWidth="184.0" style="-fx-background-color: darkgrey;" text="Dodaj nowego Administratora" textFill="#f8f8f8" />
       <Text fill="#00ffc8" layoutX="236.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w panelu administratora!" wrappingWidth="330.13671875">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="Zawodnicy" layoutX="40.0" layoutY="30.0" mnemonicParsing="false" onAction="#changeViewZawodnik" prefHeight="43.0" prefWidth="116.0" text="Zawodnicy" />
-      <Button layoutX="188.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Drużyny" />
-      <Button layoutX="474.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="110.0" text="Trenerzy" />
-      <Button layoutX="632.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" text="Sędziowie" />
-      <Button layoutX="329.0" layoutY="30.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="110.0" text="Spotkania" />
+      <Button fx:id="Zawodnicy" layoutX="40.0" layoutY="74.0" mnemonicParsing="false" onAction="#changeViewZawodnik" prefHeight="43.0" prefWidth="116.0" text="Zawodnicy" />
+      <Button layoutX="182.0" layoutY="74.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Drużyny" />
+      <Button layoutX="491.0" layoutY="74.0" mnemonicParsing="false" onAction="#changeViewTrener" prefHeight="43.0" prefWidth="110.0" text="Trenerzy" />
+      <Button layoutX="643.0" layoutY="74.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" text="Sędziowie" />
+      <Button layoutX="338.0" layoutY="74.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="110.0" text="Spotkania" />
       <BarChart fx:id="wykresPoziom" layoutX="32.0" layoutY="170.0" prefHeight="271.0" prefWidth="361.0" style="-fx-background-color: snow;" title="Ilość zawodników w przedziałach wiekowych">
         <xAxis>
           <CategoryAxis fx:id="X" label="Wiek" side="BOTTOM" />
@@ -37,5 +37,6 @@
         </yAxis>
       </BarChart>
       <Button layoutX="187.0" layoutY="450.0" mnemonicParsing="false" onAction="#odswiez" text="refresh" />
+      <Button layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#wyloguj" text="Logout" />
    </children>
 </AnchorPane>
