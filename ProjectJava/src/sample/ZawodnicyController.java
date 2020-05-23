@@ -113,19 +113,18 @@ public class ZawodnicyController {
         search=searchTXT.getText();
         if(!search.isEmpty()){
             for(PlayerModel player : oblist){
-                System.out.println(player.getImie());
-                if(player.getPesel().equals(search)){
+                if(player.getPesel().matches(search+"[0-9]*")){
                     oblistFiltered.add(player);
-                }else if(player.getImie().toLowerCase().equals(search.toLowerCase())){
+                }else if(player.getImie().toLowerCase().matches(search.toLowerCase()+"[^0-9]*")){
                     oblistFiltered.add(player);
-                }else if(player.getNazwisko().toLowerCase().equals(search.toLowerCase())){
+                }else if(player.getNazwisko().toLowerCase().matches(search.toLowerCase()+"[^0-9]*")){
                     oblistFiltered.add(player);
-                }else if(player.getPoziom().toLowerCase().equals(search.toLowerCase())){
+                }else if(player.getPoziom().toLowerCase().matches(search.toLowerCase()+"[^0-9]*")){
                     oblistFiltered.add(player);
                 }
             }
             if(!oblistFiltered.isEmpty()){
-                table.getItems().clear();
+                //table.getItems().clear();
                 table.setItems(oblistFiltered);
             }
         } else {

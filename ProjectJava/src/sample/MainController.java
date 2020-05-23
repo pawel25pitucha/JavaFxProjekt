@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainController {
@@ -94,7 +96,13 @@ public class MainController {
         window.show();
     }
     public void wyloguj(ActionEvent event) throws SQLException, IOException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        ConnectionDB.con.createStatement().executeUpdate("UPDATE Uzytkownik SET Data_wylogowania="+"'"+formatter.format(date)+"'"+" WHERE Login="+"'"+ConnectionDB.getLogin()+"'");
+        ConnectionDB.con.createStatement().executeUpdate("UPDATE Uzytkownik SET Godzina_wylogowania="+"'"+java.time.LocalTime.now()+"'"+" WHERE Login="+"'"+ConnectionDB.getLogin()+"'");
+
         ConnectionDB.con.close();
+
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();

@@ -24,7 +24,6 @@
       <AnchorPane layoutX="193.0" layoutY="615.0" prefHeight="97.0" prefWidth="418.0">
          <children>
             <TextField fx:id="searchTXT" alignment="CENTER" layoutX="114.0" layoutY="24.0" onAction="#searchPlayer" onKeyTyped="#searchPlayer" prefHeight="25.0" prefWidth="170.0" promptText="Search" />
-            <Button layoutX="284.0" layoutY="24.0" mnemonicParsing="false" text="Go" />
          </children>
       </AnchorPane>
       <TableView fx:id="table" layoutX="55.0" layoutY="236.0" prefHeight="353.0" prefWidth="680.0">

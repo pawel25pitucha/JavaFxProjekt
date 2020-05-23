@@ -105,24 +105,23 @@ public class TrenerzyController {
 
 
 
-        //szukanie zawodnika po imieniu nazwisku i peselu
+        //szukanie trenera po imieniu nazwisku i peselu
         public void searchTrener() throws SQLException {
             System.out.println("Szukam");
             oblistFiltered.clear();
             search=searchTXT.getText();
             if(!search.isEmpty()){
-                for(TrenerModel trener : oblist){
-                    System.out.println(trener.getImie());
-                    if(trener.getPesel().equals(search)){
-                        oblistFiltered.add(trener);
-                    }else if(trener.getImie().toLowerCase().equals(search.toLowerCase())){
-                        oblistFiltered.add(trener);
-                    }else if(trener.getNazwisko().toLowerCase().equals(search.toLowerCase())) {
-                        oblistFiltered.add(trener);
+                for(TrenerModel player : oblist){
+                    if(player.getPesel().matches(search+"[0-9]*")){
+                        oblistFiltered.add(player);
+                    }else if(player.getImie().toLowerCase().matches(search.toLowerCase()+"[^0-9]*")){
+                        oblistFiltered.add(player);
+                    }else if(player.getNazwisko().toLowerCase().matches(search.toLowerCase()+"[^0-9]*")){
+                        oblistFiltered.add(player);
                     }
                 }
                 if(!oblistFiltered.isEmpty()){
-                    table.getItems().clear();
+                    //table.getItems().clear();
                     table.setItems(oblistFiltered);
                 }
             } else {
