@@ -10,6 +10,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.ConnectionDB;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -100,7 +101,7 @@ public class AddTrenerController {
             stage.close();
 
             //zmiana okna
-            changeView("viewsFXML/DodajAdresTrener.fxml");
+            changeView("viewsFXML/Trener/DodajAdresTrener.fxml");
         }else{
             System.out.println("Bledne dane");
         }

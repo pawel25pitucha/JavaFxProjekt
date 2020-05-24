@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,7 +65,7 @@ public class MainController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
 
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Zawodnicy.fxml"));
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Zawodnik/Zawodnicy.fxml"));
         Scene scene2=new Scene(view2);
         Stage window=new Stage();
         window.setScene(scene2);
@@ -79,7 +77,32 @@ public class MainController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
 
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trenerzy.fxml"));
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trener/Trenerzy.fxml"));
+        Scene scene2=new Scene(view2);
+        Stage window=new Stage();
+        window.setScene(scene2);
+        window.setResizable(false);
+        window.show();
+    }
+
+    public void changeViewSedzia(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Sedzia/Sedziowie.fxml"));
+        Scene scene2=new Scene(view2);
+        Stage window=new Stage();
+        window.setScene(scene2);
+        window.setResizable(false);
+        window.show();
+    }
+    public void changeViewDruzyna(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Druzyna/Druzyna.fxml"));
         Scene scene2=new Scene(view2);
         Stage window=new Stage();
         window.setScene(scene2);
@@ -88,7 +111,7 @@ public class MainController {
     }
 
     public void addNewAdmin() throws IOException {
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/newAdmin.fxml"));
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Admin/newAdmin.fxml"));
         Scene scene2=new Scene(view2);
         Stage window=new Stage();
         window.setScene(scene2);

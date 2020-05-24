@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="851.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DruzynaController">
+   <children>
+      <Button layoutX="99.0" layoutY="32.0" mnemonicParsing="false" onAction="#changeViewAddDruzyna" prefHeight="43.0" prefWidth="112.0" text="Dodaj drużyne" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getBack" text="powrót" />
+   </children>
+</AnchorPane>

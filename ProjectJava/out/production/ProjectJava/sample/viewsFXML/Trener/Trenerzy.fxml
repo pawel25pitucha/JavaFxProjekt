@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="830.0" fitWidth="796.0" layoutX="-3.0" layoutY="-90.0">
          <image>
-            <Image url="@../pics/basketball.jpg" />
+            <Image url="@../../pics/basketball.jpg" />
          </image>
       </ImageView>
       <Button layoutX="127.0" layoutY="119.0" mnemonicParsing="false" onAction="#changeViewAdd" prefHeight="46.0" prefWidth="100.0" text="Dodaj" />
@@ -23,7 +23,7 @@
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getBack" text="Powrót" />
       <AnchorPane layoutX="199.0" layoutY="611.0" prefHeight="97.0" prefWidth="418.0">
          <children>
-            <TextField fx:id="searchTXT" alignment="CENTER" layoutX="124.0" layoutY="24.0" onAction="#searchTrener" onKeyTyped="#searchTrener" prefHeight="25.0" prefWidth="170.0" promptText="Search" />
+            <TextField fx:id="searchTXT" alignment="CENTER" layoutX="124.0" layoutY="24.0" onAction="#searchTrener" onKeyPressed="#searchTrener" onKeyReleased="#searchTrener" onKeyTyped="#searchTrener" prefHeight="25.0" prefWidth="170.0" promptText="Search" />
          </children>
       </AnchorPane>
       <TableView fx:id="table" layoutX="254.0" layoutY="236.0" prefHeight="353.0" prefWidth="307.0">

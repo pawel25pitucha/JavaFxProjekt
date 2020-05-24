@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SedziowieController">
+   <children>
+      <ImageView fitHeight="830.0" fitWidth="796.0" layoutX="-3.0" layoutY="-90.0">
+         <image>
+            <Image url="@../../pics/basketball.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="127.0" layoutY="119.0" mnemonicParsing="false" onAction="#changeViewAdd" prefHeight="46.0" prefWidth="100.0" text="Dodaj" />
+      <Button layoutX="345.0" layoutY="119.0" mnemonicParsing="false" onAction="#deleteSedzia" prefHeight="46.0" prefWidth="100.0" text="Usuń" />
+      <Button layoutX="561.0" layoutY="119.0" mnemonicParsing="false" onAction="#editSedzia" prefHeight="46.0" prefWidth="100.0" text="Edytuj" />
+      <Text layoutX="330.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sędziowie">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getBack" text="Powrót" />
+      <AnchorPane layoutX="199.0" layoutY="611.0" prefHeight="97.0" prefWidth="418.0">
+         <children>
+            <TextField fx:id="searchTXT" alignment="CENTER" layoutX="124.0" layoutY="24.0" onAction="#searchSedzia" onKeyPressed="#searchSedzia" onKeyReleased="#searchSedzia" onKeyTyped="#searchSedzia" prefHeight="25.0" prefWidth="170.0" promptText="Search" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="table" layoutX="254.0" layoutY="236.0" prefHeight="353.0" prefWidth="307.0">
+        <columns>
+          <TableColumn fx:id="imieCol" prefWidth="85.0" text="Imię" />
+            <TableColumn fx:id="nazwiskoCol" prefWidth="110.0" text="Nazwisko" />
+            <TableColumn fx:id="peselCol" prefWidth="109.0" text="Pesel" />
+        </columns>
+      </TableView>
+      <Button layoutX="505.0" layoutY="212.0" mnemonicParsing="false" onAction="#initialize" text="Refresh" />
+      <Button layoutX="360.0" layoutY="199.0" mnemonicParsing="false" text="Szczegóły" />
+   </children>
+</AnchorPane>

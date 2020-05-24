@@ -13,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.models.PlayerModel;
+import sample.ConnectionDB;
 import sample.models.TrenerModel;
 
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class TrenerzyController {
         }
 
         public void changeViewAdd(ActionEvent event) throws IOException {
-            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/DodajTrenera.fxml"));
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trener/DodajTrenera.fxml"));
             Scene scene2=new Scene(view2);
             Stage window=new Stage();
             window.setScene(scene2);
@@ -96,7 +96,7 @@ public class TrenerzyController {
         public void editTrener(ActionEvent event) throws IOException {
             TrenerModel selected = table.getSelectionModel().getSelectedItem();
             pesel=selected.getPesel();
-            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/edytujTrenera.fxml"));
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trener/edytujTrenera.fxml"));
             Scene scene2=new Scene(view2);
             Stage window=new Stage();
             window.setScene(scene2);
@@ -121,7 +121,6 @@ public class TrenerzyController {
                     }
                 }
                 if(!oblistFiltered.isEmpty()){
-                    //table.getItems().clear();
                     table.setItems(oblistFiltered);
                 }
             } else {

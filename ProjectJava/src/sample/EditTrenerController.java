@@ -87,7 +87,7 @@ public class EditTrenerController {
             stage.close();
 
             //zmiana okna
-            changeView("viewsFXML/edytujAdresTrener.fxml");
+            changeView("viewsFXML/Trener/edytujAdresTrener.fxml");
         }else{
             System.out.println("Bledne dane");
         }

@@ -10,6 +10,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.ConnectionDB;
+
 import java.io.IOException;
 import java.sql.*;
 import java.text.DateFormat;
@@ -98,7 +100,7 @@ public class AddPlayerController {
             stage.close();
 
             //zmiana okna
-            changeView("viewsFXML/DodajAdres.fxml");
+            changeView("viewsFXML/Zawodnik/DodajAdres.fxml");
         }else{
             System.out.println("Bledne dane");
         }

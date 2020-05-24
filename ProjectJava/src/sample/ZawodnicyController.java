@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.ConnectionDB;
 import sample.models.PlayerModel;
 
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class ZawodnicyController {
     }
 
     public void changeViewAdd(ActionEvent event) throws IOException {
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/DodajZawodnika.fxml"));
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Zawodnik/DodajZawodnika.fxml"));
         Scene scene2=new Scene(view2);
         Stage window=new Stage();
         window.setScene(scene2);
@@ -97,7 +98,7 @@ public class ZawodnicyController {
     public void editPlayer(ActionEvent event) throws IOException {
         PlayerModel selected = table.getSelectionModel().getSelectedItem();
         pesel=selected.getPesel();
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/edytujZawodnika.fxml"));
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Zawodnik/edytujZawodnika.fxml"));
         Scene scene2=new Scene(view2);
         Stage window=new Stage();
         window.setScene(scene2);

@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
-
 public class SukcesAddController {
 
     ///dane okna sukces
@@ -31,10 +30,14 @@ public class SukcesAddController {
             imiePrint.setText(AddTrenerController.getImie());
             nazwiskoPrint.setText(AddTrenerController.getNazwisko());
             adresPrint.setText(AddTrenerController.getMiejscowosc()+"  "+AddTrenerController.getUlica()+"  "+AddTrenerController.getNr()+"  "+AddTrenerController.getKod());
-        }else{
+        }else if(AddPlayerController.getImie()==null && AddTrenerController.getImie()==null){
             imiePrint.setText(AddPlayerController.getImie());
             nazwiskoPrint.setText(AddPlayerController.getNazwisko());
             adresPrint.setText(AddPlayerController.getMiejscowosc()+"  "+AddPlayerController.getUlica()+"  "+AddPlayerController.getNr()+"  "+AddPlayerController.getKod());
+        }else{
+            imiePrint.setText(AddTrenerController.getImie());
+            nazwiskoPrint.setText(AddTrenerController.getNazwisko());
+            adresPrint.setText(AddTrenerController.getMiejscowosc()+"  "+AddTrenerController.getUlica()+"  "+AddTrenerController.getNr()+"  "+AddTrenerController.getKod());
         }
     }
 

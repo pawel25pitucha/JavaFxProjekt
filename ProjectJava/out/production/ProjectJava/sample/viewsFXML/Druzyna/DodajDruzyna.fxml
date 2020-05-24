@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="899.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddDruzynaController">
+   <children>
+      <Text layoutX="332.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj Drużyne">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nazwaTXT" layoutX="348.0" layoutY="162.0" prefHeight="25.0" prefWidth="205.0" promptText="Nazwa drużyny" />
+      <Text fill="WHITE" layoutX="429.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="409.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz trenera">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TableView fx:id="table" layoutX="340.0" layoutY="314.0" prefHeight="200.0" prefWidth="235.0">
+        <columns>
+          <TableColumn fx:id="imieCol" prefWidth="75.0" text="Imię" />
+          <TableColumn fx:id="nazwiskoCol" prefWidth="75.0" text="Nazwisko" />
+            <TableColumn fx:id="peselCol" prefWidth="75.0" text="Pesel" />
+        </columns>
+      </TableView>
+      <TextField alignment="TOP_CENTER" layoutX="383.0" layoutY="281.0" promptText="search" />
+      <Button layoutX="417.0" layoutY="555.0" mnemonicParsing="false" onAction="#saveDruzyna" prefHeight="25.0" prefWidth="82.0" text="Dodaj" />
+      <ComboBox fx:id="dyscyplinaTXT" layoutX="361.0" layoutY="94.0" prefHeight="25.0" prefWidth="179.0" />
+      <ComboBox fx:id="ligaTXT" layoutX="360.0" layoutY="219.0" prefHeight="25.0" prefWidth="179.0" />
+   </children>
+</AnchorPane>

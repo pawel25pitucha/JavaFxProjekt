@@ -42,7 +42,7 @@ public class EditPlayerController {
 
 
         //Dane zawodnika
-        private static String pesel=ZawodnicyController.getPesel();
+        private static String pesel= ZawodnicyController.getPesel();
         private static String imie;
         private static String nazwisko;
         private static String data;
@@ -92,7 +92,7 @@ public class EditPlayerController {
             stage.close();
 
             //zmiana okna
-            changeView("viewsFXML/edytujAdres.fxml");
+            changeView("viewsFXML/Zawodnik/edytujAdres.fxml");
         }else{
             System.out.println("Bledne dane");
         }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="817.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditSedziaController">
+   <children>
+      <Text fill="WHITE" layoutX="312.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edytuj Sędziego" textAlignment="CENTER" wrappingWidth="193.296875">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="PeselTXT" layoutX="334.0" layoutY="112.0" promptText="Pesel" />
+      <TextField fx:id="ImieTXT" layoutX="334.0" layoutY="168.0" promptText="Imię" />
+      <TextField fx:id="NazwiskoTXT" layoutX="334.0" layoutY="227.0" promptText="Nazwisko" />
+      <TextField fx:id="DataTXT" layoutX="334.0" layoutY="289.0" promptText="yyyy-MM-dd" />
+      <Button fx:id="DodajBTN" layoutX="351.0" layoutY="441.0" mnemonicParsing="false" onAction="#addSedzia" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: darkgrey;" styleClass="hover" text="Dodaj" textFill="WHITE" />
+      <CheckBox fx:id="mTXT" layoutX="364.0" layoutY="333.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="90.0" text="mężczyzna" textFill="WHITE" />
+      <CheckBox fx:id="kTXT" layoutX="364.0" layoutY="357.0" mnemonicParsing="false" text="kobieta" textFill="#f8f8f8" />
+      <Label layoutX="281.0" layoutY="115.0" prefHeight="17.0" prefWidth="42.0" text="Pesel:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="281.0" layoutY="171.0" prefHeight="17.0" prefWidth="42.0" text="Imię:" textFill="#fffdfd">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="261.0" layoutY="230.0" text="Nazwisko:" textFill="#f8f8f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="232.0" layoutY="292.0" text="Data urodzenia:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text fx:id="errorMSG" fill="RED" layoutX="227.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="363.13671875" />
+   </children>
+</AnchorPane>
