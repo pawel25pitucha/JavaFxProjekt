@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="899.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddDruzynaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="899.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditDruzynaController">
    <children>
-      <Text layoutX="332.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj Drużyne">
+      <Text layoutX="332.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edytuj Drużyne">
          <font>
             <Font size="36.0" />
          </font>
@@ -29,7 +29,7 @@
             <TableColumn fx:id="peselCol" prefWidth="75.0" text="Pesel" />
         </columns>
       </TableView>
-      <TextField fx:id="searchTXT" alignment="TOP_CENTER" layoutX="383.0" layoutY="281.0" onKeyPressed="#search" onKeyReleased="#search" onKeyTyped="#search" promptText="search" />
+      <TextField fx:id="searchTXT" alignment="TOP_CENTER" layoutX="383.0" layoutY="281.0" onAction="#search" onKeyPressed="#search" onKeyReleased="#search" onKeyTyped="#search" promptText="search" />
       <Button layoutX="417.0" layoutY="555.0" mnemonicParsing="false" onAction="#saveDruzyna" prefHeight="25.0" prefWidth="82.0" text="Dodaj" />
       <ComboBox fx:id="dyscyplinaTXT" layoutX="361.0" layoutY="94.0" prefHeight="25.0" prefWidth="179.0" />
       <ComboBox fx:id="ligaTXT" layoutX="360.0" layoutY="219.0" prefHeight="25.0" prefWidth="179.0" />

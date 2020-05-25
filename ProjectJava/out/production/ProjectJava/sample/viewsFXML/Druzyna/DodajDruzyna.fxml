@@ -29,7 +29,7 @@
             <TableColumn fx:id="peselCol" prefWidth="75.0" text="Pesel" />
         </columns>
       </TableView>
-      <TextField alignment="TOP_CENTER" layoutX="383.0" layoutY="281.0" promptText="search" />
+      <TextField fx:id="searchTXT" alignment="TOP_CENTER" layoutX="383.0" layoutY="281.0" onKeyPressed="#search" onKeyReleased="#search" onKeyTyped="#search" promptText="search" />
       <Button layoutX="417.0" layoutY="555.0" mnemonicParsing="false" onAction="#saveDruzyna" prefHeight="25.0" prefWidth="82.0" text="Dodaj" />
       <ComboBox fx:id="dyscyplinaTXT" layoutX="361.0" layoutY="94.0" prefHeight="25.0" prefWidth="179.0" />
       <ComboBox fx:id="ligaTXT" layoutX="360.0" layoutY="219.0" prefHeight="25.0" prefWidth="179.0" />

@@ -31,22 +31,31 @@ public class MainController {
     private CategoryAxis Y;
 
     @FXML
+    private BarChart wykresDruzyn;
+
+
+
+    @FXML
     public void initialize() throws SQLException {
         XYChart.Series set1= new XYChart.Series<>();
         set1.getData().add(new XYChart.Data("Młodzik",getCount("Młodzik")));
         set1.getData().add(new XYChart.Data("Junior",getCount("Junior")));
         set1.getData().add(new XYChart.Data("Senior",getCount("Senior")));
         wykresPoziom.getData().addAll(set1);
+
+
+        XYChart.Series set2= new XYChart.Series<>();
+        set2.getData().add(new XYChart.Data("Piłka nożna",getCount2("Piłka nożna")));
+        set2.getData().add(new XYChart.Data("Koszykówka",getCount2("Koszykówka")));
+        set2.getData().add(new XYChart.Data("Piłka ręczna",getCount2("Piłka ręczna")));
+        set2.getData().add(new XYChart.Data("Siatkówka",getCount2("Siatkówka")));
+        wykresDruzyn.getData().addAll(set2);
     }
 
     public void odswiez() throws SQLException {
-        XYChart.Series set1= new XYChart.Series<>();
-        set1.getData().add(new XYChart.Data("Młodzik",getCount("Młodzik")));
-        set1.getData().add(new XYChart.Data("Junior",getCount("Junior")));
-        set1.getData().add(new XYChart.Data("Senior",getCount("Senior")));
         wykresPoziom.getData().clear();
-        wykresPoziom.getData().addAll(set1);
-
+        wykresDruzyn.getData().clear();
+        initialize();
     }
 
     public int getCount(String poziom) throws SQLException {
@@ -58,7 +67,15 @@ public class MainController {
         }
         return ilosc;
     }
-
+    public int getCount2(String sport) throws SQLException {
+        int ilosc = 0;
+        Statement stmt = ConnectionDB.con.createStatement();
+        ResultSet result = stmt.executeQuery("SELECT COUNT(*) FROM Drużyna INNER JOIN Dyscyplina ON Drużyna.Dyscyplina_Id=Dyscyplina.Id WHERE Dyscyplina.Nazwa="+"'"+sport+"'");
+        if (result.next()) { // just in case
+            ilosc = result.getInt(1); // note that indexes are one-based
+        }
+        return ilosc;
+    }
 
     public void changeViewZawodnik(ActionEvent event) throws IOException {
         Node source = (Node) event.getSource();
