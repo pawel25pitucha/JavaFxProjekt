@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="837.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddSpotkanieController">
+   <children>
+      <TextField fx:id="druzyna1" alignment="CENTER" layoutX="141.0" layoutY="125.0" prefHeight="60.0" prefWidth="181.0" promptText="Gospodarz">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="druzyna2" alignment="CENTER" layoutX="509.0" layoutY="126.0" prefHeight="60.0" prefWidth="181.0" promptText="Gość">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="392.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VS">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="283.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj spotkanie">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button layoutX="48.0" layoutY="142.0" mnemonicParsing="false" onAction="#szukajDruzyny1" prefHeight="25.0" prefWidth="83.0" text="Szukaj" />
+      <Button layoutX="704.0" layoutY="143.0" mnemonicParsing="false" onAction="#szukajDruzyny2" prefHeight="25.0" prefWidth="83.0" text="Szukaj" />
+      <TableView fx:id="table" layoutX="332.0" layoutY="221.0" prefHeight="200.0" prefWidth="149.0">
+        <columns>
+          <TableColumn fx:id="imieCol" prefWidth="75.0" text="Imię" />
+          <TableColumn fx:id="nazwiskoCol" prefWidth="75.0" text="Nazwisko" />
+        </columns>
+      </TableView>
+      <Text fill="WHITE" layoutX="387.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sędzia">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="348.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cena" layoutX="411.0" layoutY="428.0" prefHeight="25.0" prefWidth="44.0" />
+      <TextField fx:id="punkty1" alignment="CENTER" layoutX="193.0" layoutY="197.0" prefHeight="60.0" prefWidth="77.0" promptText="Punkty" />
+      <TextField fx:id="punkty2" alignment="CENTER" layoutX="561.0" layoutY="197.0" prefHeight="60.0" prefWidth="77.0" promptText="Punkty" />
+      <Text fx:id="errorMSG" fill="RED" layoutX="249.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="326.0" />
+      <Button fx:id="addBTN" layoutX="358.0" layoutY="585.0" mnemonicParsing="false" onAction="#addSpotkanie" prefHeight="48.0" prefWidth="109.0" text="Dodaj" />
+      <TextField fx:id="data" alignment="CENTER" layoutX="338.0" layoutY="495.0" promptText="yyyy/MM/dd" />
+      <Text fill="WHITE" layoutX="392.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getBack" text="Powrót" />
+   </children>
+</AnchorPane>

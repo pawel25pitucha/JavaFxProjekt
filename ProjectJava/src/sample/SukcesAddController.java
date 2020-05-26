@@ -31,13 +31,13 @@ public class SukcesAddController {
             nazwiskoPrint.setText(AddTrenerController.getNazwisko());
             adresPrint.setText(AddTrenerController.getMiejscowosc()+"  "+AddTrenerController.getUlica()+"  "+AddTrenerController.getNr()+"  "+AddTrenerController.getKod());
         }else if(AddPlayerController.getImie()==null && AddTrenerController.getImie()==null){
+            imiePrint.setText(AddSedziaController.getImie());
+            nazwiskoPrint.setText(AddSedziaController.getNazwisko());
+            adresPrint.setText(AddSedziaController.getMiejscowosc()+"  "+AddSedziaController.getUlica()+"  "+AddSedziaController.getNr()+"  "+AddSedziaController.getKod());
+        }else{
             imiePrint.setText(AddPlayerController.getImie());
             nazwiskoPrint.setText(AddPlayerController.getNazwisko());
             adresPrint.setText(AddPlayerController.getMiejscowosc()+"  "+AddPlayerController.getUlica()+"  "+AddPlayerController.getNr()+"  "+AddPlayerController.getKod());
-        }else{
-            imiePrint.setText(AddTrenerController.getImie());
-            nazwiskoPrint.setText(AddTrenerController.getNazwisko());
-            adresPrint.setText(AddTrenerController.getMiejscowosc()+"  "+AddTrenerController.getUlica()+"  "+AddTrenerController.getNr()+"  "+AddTrenerController.getKod());
         }
     }
 

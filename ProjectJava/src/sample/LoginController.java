@@ -26,7 +26,6 @@ public class LoginController {
 
     public void Login(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         if(ConnectionDB.ConnectionDB(usernameTXT.getText(),passwordTXT.getText())){
-            System.out.println("Witaj w bazie byczku");
            Parent view= FXMLLoader.load(getClass().getResource("viewsFXML/Main.fxml"));
            Scene scene=new Scene(view);
            Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();

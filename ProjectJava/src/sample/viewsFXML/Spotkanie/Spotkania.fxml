@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="851.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SpotkaniaController">
+   <children>
+      <TableView fx:id="table" layoutX="312.0" layoutY="132.0" prefHeight="256.0" prefWidth="229.0">
+        <columns>
+          <TableColumn fx:id="gospodarzCol" prefWidth="75.0" text="Gospodarz" />
+          <TableColumn fx:id="goscCol" prefWidth="75.0" text="Gość" />
+            <TableColumn fx:id="dataCol" prefWidth="75.0" text="Data" />
+        </columns>
+      </TableView>
+      <Button layoutX="356.0" layoutY="388.0" mnemonicParsing="false" onAction="#szczegoly" prefHeight="28.0" prefWidth="139.0" text="Wyświetl szczegóły" />
+      <TextField alignment="TOP_CENTER" layoutX="351.0" layoutY="92.0" promptText="search" />
+      <Text fx:id="nazwa1TXT" fill="WHITE" layoutX="287.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="139.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="nazwa2TXT" fill="WHITE" layoutX="495.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="vs" fill="WHITE" layoutX="411.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="29.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="dataInfo" fill="WHITE" layoutX="287.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="116.13671875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="dataTXT" fill="WHITE" layoutX="460.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="cenaInfo" fill="WHITE" layoutX="287.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cenaTXT" fill="WHITE" layoutX="460.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="sedziaInfo" fill="WHITE" layoutX="276.0" layoutY="631.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="sedziaTXT" fill="WHITE" layoutX="460.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="100.0" layoutY="28.0" mnemonicParsing="false" onAction="#dodajSpotkanie" prefHeight="39.0" prefWidth="130.0" text="Dodaj Spotkanie" />
+      <Button layoutX="374.0" layoutY="28.0" mnemonicParsing="false" onAction="#deleteSpotkanie" prefHeight="39.0" prefWidth="104.0" text="Usuń " />
+      <Button layoutX="611.0" layoutY="28.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Edytuj" />
+      <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#getBack" text="Powrót" />
+   </children>
+</AnchorPane>
