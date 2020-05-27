@@ -55,7 +55,12 @@ public class SzukajDruzynyController {
     ObservableList<DruzynaModel> oblistFiltered = FXCollections.observableArrayList();
     @FXML
     public void initialize() throws SQLException {
-        helper=AddSpotkanieController.getHelper();
+        if(AddSpotkanieController.getHelper()==null){
+           helper= EditSpotkanieController.getHelper();
+        }else{
+            helper=AddSpotkanieController.getHelper();
+        }
+
         table.getItems().clear();
         ResultSet rs = ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Drużyna");
         while(rs.next()){
@@ -89,14 +94,27 @@ public class SzukajDruzynyController {
     public void dodajDruzyne(ActionEvent event) throws IOException {
         if(helper.equals("1")) nazwa1=table.getSelectionModel().getSelectedItem().getNazwa();
         else nazwa2=table.getSelectionModel().getSelectedItem().getNazwa();
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Spotkanie/DodajSpotkanie.fxml"));
-        Scene scene2=new Scene(view2);
-        Stage window=new Stage();
-        window.setScene(scene2);
-        window.setResizable(false);
-        window.show();
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+        if(AddSpotkanieController.getHelper()==null){
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Spotkanie/EdytujSpotkanie.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.setResizable(false);
+            window.show();
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+        }else{
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Spotkanie/DodajSpotkanie.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.setResizable(false);
+            window.show();
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+        }
+
     }
 }

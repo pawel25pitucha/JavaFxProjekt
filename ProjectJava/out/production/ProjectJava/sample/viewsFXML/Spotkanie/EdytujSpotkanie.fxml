@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="736.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddSpotkanieController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="736.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditSpotkanieController">
    <children>
       <ImageView fitHeight="841.0" fitWidth="738.0">
          <image>
@@ -48,8 +48,8 @@
       <TextField fx:id="cena" alignment="CENTER" layoutX="316.0" layoutY="436.0" prefHeight="48.0" prefWidth="83.0" promptText="Cena" />
       <TextField fx:id="punkty1" alignment="CENTER" layoutX="155.0" layoutY="197.0" prefHeight="60.0" prefWidth="77.0" promptText="Punkty" />
       <TextField fx:id="punkty2" alignment="CENTER" layoutX="490.0" layoutY="197.0" prefHeight="60.0" prefWidth="77.0" promptText="Punkty" />
-      <Text fx:id="errorMSG" fill="RED" layoutX="205.0" layoutY="691.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="326.0" />
-      <Button fx:id="addBTN" layoutX="304.0" layoutY="618.0" mnemonicParsing="false" onAction="#addSpotkanie" prefHeight="48.0" prefWidth="109.0" text="Dodaj" />
+      <Text fx:id="errorMSG" fill="RED" layoutX="196.0" layoutY="691.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="326.0" />
+      <Button fx:id="addBTN" layoutX="303.0" layoutY="610.0" mnemonicParsing="false" onAction="#addSpotkanie" prefHeight="48.0" prefWidth="109.0" text="Dodaj" />
       <TextField fx:id="data" alignment="CENTER" layoutX="284.0" layoutY="525.0" promptText="yyyy/MM/dd" />
       <Text fill="WHITE" layoutX="344.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data">
          <font>

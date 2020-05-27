@@ -93,7 +93,6 @@ public class DruzynaController {
        return nazwa;
     }
     public String getDyscyplinaNazwa(String Dyscyplina_Id) throws SQLException {
-        System.out.println("4");
         String nazwa = null;
         ResultSet dyscyplinaSet= ConnectionDB.con.createStatement().executeQuery("SELECT Nazwa FROM Dyscyplina WHERE Id="+"'"+Dyscyplina_Id+"'");
         while(dyscyplinaSet.next()){
@@ -129,12 +128,25 @@ public class DruzynaController {
         window.setScene(scene2);
         window.show();
     }
+    public String getDruzynaId(String nazwa) throws SQLException {
+        String id = null;
+        ResultSet druzynaSet= ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Drużyna WHERE Nazwa="+"'"+nazwa+"'");
+        while(druzynaSet.next()){
+            id=druzynaSet.getString("Id");
+        }
+        return id;
+    }
 
     public void deleteTeam(ActionEvent event) throws SQLException {
         DruzynaModel deleted = table.getSelectionModel().getSelectedItem();
         String nazwaDeleted=deleted.getNazwa();
+        String druzynaId=getDruzynaId(nazwaDeleted);
         Statement stmt = ConnectionDB.con.createStatement();
-        stmt.execute("DELETE Drużyna FROM Drużyna WHERE Nazwa="+"'"+nazwaDeleted+"'");
+        ResultSet result=stmt.executeQuery("SELECT * FROM Trener_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
+        if(result!=null){
+            ConnectionDB.con.createStatement().execute("DELETE Trener_has_Drużyna FROM Trener_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
+        }
+        ConnectionDB.con.createStatement().execute("DELETE Drużyna FROM Drużyna WHERE Nazwa="+"'"+nazwaDeleted+"'");
         System.out.println("Usunieto Druzyne :(");
         initialize();
     }

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import sample.ConnectionDB;
 import sample.models.TrenerModel;
 
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,10 +82,24 @@ public class TrenerzyController {
             window.show();
         }
 
+    public String getTrenerId(String pesel) throws SQLException {
+        String id = null;
+        ResultSet trenerSet= ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Trener WHERE Pesel="+"'"+pesel+"'");
+        while(trenerSet.next()){
+            id=trenerSet.getString("Id");
+        }
+        return id;
+    }
 
         public void deleteTrener(ActionEvent event) throws SQLException {
             TrenerModel deleted = table.getSelectionModel().getSelectedItem();
             String peselDeleted=deleted.getPesel();
+            String trenerId=getTrenerId(peselDeleted);
+
+            ResultSet rs=ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Trener_has_Drużyna WHERE Trener_Id="+"'"+trenerId+"'");
+            if (rs != null) {
+                ConnectionDB.con.createStatement().execute("DELETE Trener_has_Drużyna FROM Trener_has_Drużyna WHERE Trener_Id="+"'"+trenerId+"'");
+            }
             Statement stmt = ConnectionDB.con.createStatement();
             stmt.execute("DELETE Trener FROM Trener WHERE Pesel="+"'"+peselDeleted+"'");
             System.out.println("Usunieto Trenera :(");

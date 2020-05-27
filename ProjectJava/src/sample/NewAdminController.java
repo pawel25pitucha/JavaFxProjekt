@@ -1,9 +1,12 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import sample.ConnectionDB;
 import sample.models.UserModel;
 
@@ -28,18 +31,23 @@ public class NewAdminController {
 
 
 
-    public void addNewAdmin() throws SQLException {
+    public void addNewAdmin(ActionEvent event) throws SQLException {
        if(checkLogin()){
            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
            java.util.Date date = new Date();
            String sql= "INSERT INTO Uzytkownik(Login,Hasło,Data_utworzenia,Stworzył) VALUES (?,?,?,?)";
            PreparedStatement statement = ConnectionDB.con.prepareStatement(sql);
+           String haslo=ConnectionDB.md5(password1);
            statement.setString(1, login);
-           statement.setString(2, password1);
+           statement.setString(2, haslo);
            statement.setString(3, formatter.format(date));
            statement.setString(4, ConnectionDB.getLogin());
            int result=statement.executeUpdate();
            if(result>0)System.out.println("Dodano admina");
+           Node source = (Node) event.getSource();
+           Stage stage = (Stage) source.getScene().getWindow();
+           stage.close();
+
        }
     }
 

@@ -51,6 +51,10 @@ public class SpotkaniaController {
     private Text sedziaInfo;
     @FXML
     private Text vs;
+    @FXML
+    private TextField searchTXT;
+    public static SpotkanieModel selected;
+    private String search;
 
     ObservableList<SpotkanieModel> oblist = FXCollections.observableArrayList();
     ObservableList<SpotkanieModel> oblistFiltered = FXCollections.observableArrayList();
@@ -93,6 +97,15 @@ public class SpotkaniaController {
         window.setResizable(false);
         window.show();
     }
+    public void edytujSpotkanie() throws IOException {
+        selected=table.getSelectionModel().getSelectedItem();
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Spotkanie/EdytujSpotkanie.fxml"));
+        Scene scene2=new Scene(view2);
+        Stage window=new Stage();
+        window.setScene(scene2);
+        window.setResizable(false);
+        window.show();
+    }
     public void getBack(ActionEvent event) throws IOException {
         Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Main.fxml"));
         Scene scene2=new Scene(view2);
@@ -103,6 +116,9 @@ public class SpotkaniaController {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+    public void refresh() throws SQLException {
+        initialize();
     }
     public void deleteSpotkanie(ActionEvent event) throws SQLException {
         SpotkanieModel deleted = table.getSelectionModel().getSelectedItem();
@@ -152,5 +168,28 @@ public class SpotkaniaController {
         String imie=getSedziaImie(table.getSelectionModel().getSelectedItem().getSedziaId());
         String nazwisko=getSedziaNazwisko(table.getSelectionModel().getSelectedItem().getSedziaId());
         sedziaTXT.setText(imie+"  "+nazwisko);
+    }
+    public void searchSpotkanie() throws SQLException {
+        System.out.println("Szukam");
+        oblistFiltered.clear();
+        search=searchTXT.getText();
+        if(!search.isEmpty()){
+            for(SpotkanieModel player : oblist){
+                if(player.getNazwaGospodarz().toLowerCase().matches(search.toLowerCase()+"[^0-9]*")){
+                    oblistFiltered.add(player);
+                }else if(player.getNazwaGosc().toLowerCase().matches(search.toLowerCase()+"[^0-9]*")){
+                    oblistFiltered.add(player);
+                }else if(player.getData().toLowerCase().matches(search.toLowerCase()+".*")){
+                    oblistFiltered.add(player);
+                }
+            }
+            if(!oblistFiltered.isEmpty()){
+                //table.getItems().clear();
+                table.setItems(oblistFiltered);
+            }
+        } else {
+            initialize();
+        }
+
     }
 }

@@ -13,11 +13,14 @@ import sample.models.DruzynaModel;
 import sample.models.TrenerModel;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AddDruzynaController {
     @FXML
@@ -46,6 +49,7 @@ public class AddDruzynaController {
 
     private String trenerId;
 
+    private ArrayList<String> dyscypliny=new ArrayList<>();
 
 
     @FXML
@@ -63,12 +67,13 @@ public class AddDruzynaController {
         peselCol.setCellValueFactory(new PropertyValueFactory<TrenerModel,String>("pesel"));
         table.setItems(oblist);
 
+        ResultSet rs2 = ConnectionDB.con.createStatement().executeQuery("SELECT Nazwa FROM Dyscyplina");
+        while(rs2.next()){
+            dyscypliny.add(rs2.getString("Nazwa"));
+        }
         ///choice box
         dyscyplinaTXT.setPromptText("Wybierz dyscyplinę");
-        dyscyplinaTXT.getItems().add("Koszykówka");
-        dyscyplinaTXT.getItems().add("Piłka nożna");
-        dyscyplinaTXT.getItems().add("Piłka ręczna");
-        dyscyplinaTXT.getItems().add("Siatkówka");
+        dyscyplinaTXT.getItems().setAll(dyscypliny);
 
         //liga choicebox
         ligaTXT.setPromptText("Wybierz ligę");
@@ -96,28 +101,27 @@ public class AddDruzynaController {
         return id;
     }
 
-    private void dodajDoBazy(ActionEvent event){
-        String DyscyplinaId;
-        String ligaId = null;
-        if(dyscyplina.equals("Piłka nożna")) {
-            DyscyplinaId="1";
-        }else if(dyscyplina.equals("Piłka ręczna")) {
-            DyscyplinaId="2";
-        }else if(dyscyplina.equals("Koszykówka")) {
-            DyscyplinaId="3";
-        }else {
-            DyscyplinaId="4";
+    public String getIdDyscyplina(String nazwa) throws SQLException {
+        String id = null;
+        ResultSet result = ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Dyscyplina WHERE Nazwa=" + "'" + nazwa + "'");
+        while (result.next()) {
+            id = result.getString("Id");
         }
+        return id;
+    }
+    public String getIdLiga(String nazwa) throws SQLException {
+        String id = null;
+        ResultSet result = ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Liga WHERE Nazwa=" + "'" + nazwa + "'");
+        while (result.next()) {
+            id = result.getString("Id");
+        }
+        return id;
+    }
 
-        if(liga.equals("SuperLiga")) {
-            ligaId="1";
-        }else if(liga.equals("1 Liga")) {
-            ligaId="2";
-        }else if(liga.equals("2 Liga")) {
-            ligaId="3";
-        }else{
-            ligaId="4";
-        }
+    private void dodajDoBazy(ActionEvent event) throws SQLException {
+        String DyscyplinaId=getIdDyscyplina(dyscyplina);
+        String ligaId = getIdLiga(liga);
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
         java.util.Date date = new Date();
 

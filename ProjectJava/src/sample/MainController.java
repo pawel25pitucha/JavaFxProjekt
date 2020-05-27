@@ -101,6 +101,15 @@ public class MainController {
         window.setResizable(false);
         window.show();
     }
+    public void changeViewDyscyplina(ActionEvent event) throws IOException {
+
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Dyscyplina/DodajDyscypline.fxml"));
+        Scene scene2=new Scene(view2);
+        Stage window=new Stage();
+        window.setScene(scene2);
+        window.setResizable(false);
+        window.show();
+    }
     public void changeViewSpotkanie(ActionEvent event) throws IOException {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
