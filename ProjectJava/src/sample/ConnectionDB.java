@@ -71,7 +71,6 @@ public class ConnectionDB {
             }
         }
         return false;
-
     }
 
     public static String md5(String input) {

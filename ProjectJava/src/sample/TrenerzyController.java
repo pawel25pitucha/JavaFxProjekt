@@ -13,18 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.ConnectionDB;
 import sample.models.TrenerModel;
-
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class TrenerzyController {
-
-
         private static String pesel;
 
         public static String getPesel() {
@@ -63,7 +58,7 @@ public class TrenerzyController {
             table.setItems(oblist);
         }
 
-        public void changeViewAdd(ActionEvent event) throws IOException {
+        public void changeViewAdd() throws IOException {
             Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trener/DodajTrenera.fxml"));
             Scene scene2=new Scene(view2);
             Stage window=new Stage();
@@ -93,29 +88,33 @@ public class TrenerzyController {
 
         public void deleteTrener(ActionEvent event) throws SQLException {
             TrenerModel deleted = table.getSelectionModel().getSelectedItem();
-            String peselDeleted=deleted.getPesel();
-            String trenerId=getTrenerId(peselDeleted);
+            if(deleted!=null){
+                String peselDeleted=deleted.getPesel();
+                String trenerId=getTrenerId(peselDeleted);
 
-            ResultSet rs=ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Trener_has_Drużyna WHERE Trener_Id="+"'"+trenerId+"'");
-            if (rs != null) {
-                ConnectionDB.con.createStatement().execute("DELETE Trener_has_Drużyna FROM Trener_has_Drużyna WHERE Trener_Id="+"'"+trenerId+"'");
+                ResultSet rs=ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Trener_has_Drużyna WHERE Trener_Id="+"'"+trenerId+"'");
+                if (rs != null) {
+                    ConnectionDB.con.createStatement().execute("DELETE Trener_has_Drużyna FROM Trener_has_Drużyna WHERE Trener_Id="+"'"+trenerId+"'");
+                }
+                Statement stmt = ConnectionDB.con.createStatement();
+                stmt.execute("DELETE Trener FROM Trener WHERE Pesel="+"'"+peselDeleted+"'");
+                System.out.println("Usunieto Trenera :(");
+                stmt.execute("DELETE Adres FROM Adres inner join Trener On Adres.Id=Trener.Adres_id WHERE Pesel="+"'"+peselDeleted+"'");
+                System.out.println("Usunieto Adres Trenera");
+                initialize();
             }
-            Statement stmt = ConnectionDB.con.createStatement();
-            stmt.execute("DELETE Trener FROM Trener WHERE Pesel="+"'"+peselDeleted+"'");
-            System.out.println("Usunieto Trenera :(");
-            stmt.execute("DELETE Adres FROM Adres inner join Trener On Adres.Id=Trener.Adres_id WHERE Pesel="+"'"+peselDeleted+"'");
-            System.out.println("Usunieto Adres Trenera");
-            initialize();
         }
 
-        public void editTrener(ActionEvent event) throws IOException {
+        public void editTrener() throws IOException {
             TrenerModel selected = table.getSelectionModel().getSelectedItem();
-            pesel=selected.getPesel();
-            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trener/edytujTrenera.fxml"));
-            Scene scene2=new Scene(view2);
-            Stage window=new Stage();
-            window.setScene(scene2);
-            window.show();
+            if(selected!=null){
+                pesel=selected.getPesel();
+                Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trener/edytujTrenera.fxml"));
+                Scene scene2=new Scene(view2);
+                Stage window=new Stage();
+                window.setScene(scene2);
+                window.show();
+            }
         }
 
 
@@ -145,5 +144,5 @@ public class TrenerzyController {
         }
 
 
-    }
+}
 

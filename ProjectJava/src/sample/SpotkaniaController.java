@@ -99,12 +99,14 @@ public class SpotkaniaController {
     }
     public void edytujSpotkanie() throws IOException {
         selected=table.getSelectionModel().getSelectedItem();
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Spotkanie/EdytujSpotkanie.fxml"));
-        Scene scene2=new Scene(view2);
-        Stage window=new Stage();
-        window.setScene(scene2);
-        window.setResizable(false);
-        window.show();
+        if(selected!=null){
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Spotkanie/EdytujSpotkanie.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.setResizable(false);
+            window.show();
+        }
     }
     public void getBack(ActionEvent event) throws IOException {
         Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Main.fxml"));
@@ -122,11 +124,13 @@ public class SpotkaniaController {
     }
     public void deleteSpotkanie(ActionEvent event) throws SQLException {
         SpotkanieModel deleted = table.getSelectionModel().getSelectedItem();
-        String id=getSpotkanieId(deleted.getGospodarzId(),deleted.getGoscId());
-        Statement stmt = ConnectionDB.con.createStatement();
-        stmt.execute("DELETE Spotkanie FROM Spotkanie WHERE Id="+"'"+id+"'");
-        System.out.println("Usunieto Spotkanie :(");
-        initialize();
+        if(deleted!=null){
+            String id=getSpotkanieId(deleted.getGospodarzId(),deleted.getGoscId());
+            Statement stmt = ConnectionDB.con.createStatement();
+            stmt.execute("DELETE Spotkanie FROM Spotkanie WHERE Id="+"'"+id+"'");
+            System.out.println("Usunieto Spotkanie :(");
+            initialize();
+        }
     }
 
     public String getSpotkanieId(String gospodarzID,String goscID) throws SQLException {

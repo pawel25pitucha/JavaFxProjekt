@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DruzynaDodajZawodnikowController">
+   <children>
+      <ImageView fitHeight="735.0" fitWidth="687.0">
+         <image>
+            <Image url="@../../pics/basketball.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="166.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj/usuń zawodników do drużyny">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TableView fx:id="table" layoutX="166.0" layoutY="148.0" prefHeight="190.0" prefWidth="357.0">
+        <columns>
+          <TableColumn fx:id="imieCol" prefWidth="116.0" text="Imię" />
+          <TableColumn fx:id="nazwiskoCol" prefWidth="128.0" text="Nazwisko" />
+            <TableColumn fx:id="poziomCol" prefWidth="109.0" text="Poziom" />
+        </columns>
+      </TableView>
+      <Text layoutX="261.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zawodnicy w drużynie" wrappingWidth="195.765625">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="166.0" layoutY="337.0" prefHeight="319.0" prefWidth="357.0" style="-fx-background-color: darkslategrey;">
+         <children>
+            <Button layoutX="76.0" layoutY="271.0" mnemonicParsing="false" onAction="#dodajGracza" prefHeight="35.0" prefWidth="93.0" text="Dodaj" />
+            <TableView fx:id="table2" layoutY="48.0" prefHeight="200.0" prefWidth="357.0">
+              <columns>
+                <TableColumn fx:id="imieCol2" prefWidth="118.0" text="Imię" />
+                <TableColumn fx:id="nazwiskoCol2" prefWidth="134.0" text="Nazwisko" />
+                  <TableColumn fx:id="poziomCol2" prefWidth="103.0" text="Poziom" />
+              </columns>
+            </TableView>
+            <Button layoutX="194.0" layoutY="271.0" mnemonicParsing="false" onAction="#usunGracza" prefHeight="35.0" prefWidth="93.0" text="Usuń" />
+            <Text fill="WHITE" layoutX="108.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dostępni zawodnicy">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fx:id="statusMSG" fill="#11ff00" layoutX="312.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="druzynaNazwa" layoutX="138.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="441.13671875">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="22.0" layoutY="27.0" mnemonicParsing="false" onAction="#getBack" text="powrót" />
+   </children>
+</AnchorPane>

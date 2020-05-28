@@ -82,27 +82,43 @@ public class ZawodnicyController {
         window.setScene(scene2);
         window.show();
     }
-
+    public String getPlayerId(String pesel) throws SQLException {
+        String id = null;
+        ResultSet druzynaSet= ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Zawodnik WHERE Pesel="+"'"+pesel+"'");
+        while(druzynaSet.next()){
+            id=druzynaSet.getString("Id");
+        }
+        return id;
+    }
 
     public void deletePlayer(ActionEvent event) throws SQLException {
         PlayerModel deleted = table.getSelectionModel().getSelectedItem();
-        String peselDeleted=deleted.getPesel();
-        Statement stmt = ConnectionDB.con.createStatement();
-        stmt.execute("DELETE Zawodnik FROM Zawodnik WHERE Pesel="+"'"+peselDeleted+"'");
-        System.out.println("Usunieto Zawodnika :(");
-        stmt.execute("DELETE Adres FROM Adres inner join Zawodnik On Adres.Id=Zawodnik.Adres_id WHERE Pesel="+"'"+peselDeleted+"'");
-        System.out.println("Usunieto Adres Zawodnika");
-        initialize();
+        if(deleted!=null){
+            String peselDeleted=deleted.getPesel();
+            String idplayer=getPlayerId(peselDeleted);
+            Statement stmt = ConnectionDB.con.createStatement();
+            ResultSet st=stmt.executeQuery("SELECT * FROM Zawodnik_has_Drużyna WHERE Zawodnik_Id="+"'"+idplayer+"'");
+            if(st!=null){
+                stmt.executeUpdate("DELETE Zawodnik_has_Drużyna FROM Zawodnik_has_Drużyna WHERE Zawodnik_Id="+"'"+idplayer+"'");
+            }
+            stmt.execute("DELETE Zawodnik FROM Zawodnik WHERE Pesel="+"'"+peselDeleted+"'");
+            System.out.println("Usunieto Zawodnika :(");
+            stmt.execute("DELETE Adres FROM Adres inner join Zawodnik On Adres.Id=Zawodnik.Adres_id WHERE Pesel="+"'"+peselDeleted+"'");
+            System.out.println("Usunieto Adres Zawodnika");
+            initialize();
+        }
     }
 
     public void editPlayer(ActionEvent event) throws IOException {
         PlayerModel selected = table.getSelectionModel().getSelectedItem();
-        pesel=selected.getPesel();
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Zawodnik/edytujZawodnika.fxml"));
-        Scene scene2=new Scene(view2);
-        Stage window=new Stage();
-        window.setScene(scene2);
-        window.show();
+        if(selected!=null){
+            pesel=selected.getPesel();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Zawodnik/edytujZawodnika.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
     }
 
 

@@ -85,23 +85,27 @@ public class SedziowieController {
 
     public void deleteSedzia(ActionEvent event) throws SQLException {
         SedziaModel deleted = table.getSelectionModel().getSelectedItem();
-        String peselDeleted=deleted.getPesel();
-        Statement stmt = ConnectionDB.con.createStatement();
-        stmt.execute("DELETE Sędzia FROM Sędzia WHERE Pesel="+"'"+peselDeleted+"'");
-        System.out.println("Usunieto Sędziego :(");
-        stmt.execute("DELETE Adres FROM Adres inner join Sędzia On Adres.Id=Sędzia.Adres_id WHERE Pesel="+"'"+peselDeleted+"'");
-        System.out.println("Usunieto Adres Sędziego");
-        initialize();
+        if(deleted!=null){
+            String peselDeleted=deleted.getPesel();
+            Statement stmt = ConnectionDB.con.createStatement();
+            stmt.execute("DELETE Sędzia FROM Sędzia WHERE Pesel="+"'"+peselDeleted+"'");
+            System.out.println("Usunieto Sędziego :(");
+            stmt.execute("DELETE Adres FROM Adres inner join Sędzia On Adres.Id=Sędzia.Adres_id WHERE Pesel="+"'"+peselDeleted+"'");
+            System.out.println("Usunieto Adres Sędziego");
+            initialize();
+        }
     }
 
     public void editSedzia(ActionEvent event) throws IOException {
         SedziaModel selected = table.getSelectionModel().getSelectedItem();
-        pesel=selected.getPesel();
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Sedzia/edytujSedziego.fxml"));
-        Scene scene2=new Scene(view2);
-        Stage window=new Stage();
-        window.setScene(scene2);
-        window.show();
+        if(selected!=null){
+            pesel=selected.getPesel();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Sedzia/edytujSedziego.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
     }
 
 

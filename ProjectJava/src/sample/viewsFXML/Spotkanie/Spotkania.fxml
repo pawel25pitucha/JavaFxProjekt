@@ -17,6 +17,55 @@
             <Image url="@../../pics/basketball.jpg" />
          </image>
       </ImageView>
+      <AnchorPane layoutX="209.0" layoutY="75.0" prefHeight="575.0" prefWidth="363.0" style="-fx-background-color: lightgrey;">
+         <children>
+            <Text fx:id="nazwa1TXT" layoutX="25.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="vs" fill="RED" layoutX="167.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="29.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="nazwa2TXT" layoutX="200.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="149.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="dataInfo" layoutX="54.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="116.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="dataTXT" layoutX="210.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="cenaInfo" layoutX="43.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="cenaTXT" layoutX="210.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="sedziaInfo" layoutX="43.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="sedziaTXT" layoutX="210.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="149.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
       <TableView fx:id="table" layoutX="276.0" layoutY="132.0" prefHeight="256.0" prefWidth="229.0">
         <columns>
           <TableColumn fx:id="gospodarzCol" prefWidth="75.0" text="Gospodarz" />
@@ -26,51 +75,6 @@
       </TableView>
       <Button layoutX="321.0" layoutY="388.0" mnemonicParsing="false" onAction="#szczegoly" prefHeight="28.0" prefWidth="139.0" text="Wyświetl szczegóły" />
       <TextField fx:id="searchTXT" alignment="TOP_CENTER" layoutX="312.0" layoutY="89.0" onKeyPressed="#searchSpotkanie" onKeyReleased="#searchSpotkanie" onKeyTyped="#searchSpotkanie" promptText="search" />
-      <Text fx:id="nazwa1TXT" fill="WHITE" layoutX="287.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="139.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="nazwa2TXT" fill="WHITE" layoutX="495.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="vs" fill="WHITE" layoutX="411.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="29.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="dataInfo" fill="WHITE" layoutX="287.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="116.13671875">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="dataTXT" fill="WHITE" layoutX="460.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fx:id="cenaInfo" fill="WHITE" layoutX="287.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="cenaTXT" fill="WHITE" layoutX="460.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fx:id="sedziaInfo" fill="WHITE" layoutX="276.0" layoutY="631.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="sedziaTXT" fill="WHITE" layoutX="460.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
       <Button layoutX="136.0" layoutY="28.0" mnemonicParsing="false" onAction="#dodajSpotkanie" prefHeight="39.0" prefWidth="130.0" text="Dodaj Spotkanie" />
       <Button layoutX="334.0" layoutY="28.0" mnemonicParsing="false" onAction="#deleteSpotkanie" prefHeight="39.0" prefWidth="104.0" text="Usuń " />
       <Button layoutX="501.0" layoutY="28.0" mnemonicParsing="false" onAction="#edytujSpotkanie" prefHeight="39.0" prefWidth="104.0" text="Edytuj" />

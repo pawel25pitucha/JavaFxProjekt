@@ -14,10 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 import sample.models.DruzynaModel;
-import sample.models.PlayerModel;
-import sample.models.TrenerModel;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -84,7 +81,7 @@ public class DruzynaController {
         iloscZawodnikowCol.setCellValueFactory(new PropertyValueFactory<DruzynaModel,String>("liga"));
         table.setItems(oblist);
     }
-    public String getLigaNazwa(String Liga_Id) throws SQLException {
+    private String getLigaNazwa(String Liga_Id) throws SQLException {
         String nazwa = null;
         ResultSet ligaSet= ConnectionDB.con.createStatement().executeQuery("SELECT Nazwa FROM Liga WHERE Id="+"'"+Liga_Id+"'");
         while(ligaSet.next()){
@@ -92,7 +89,7 @@ public class DruzynaController {
         }
        return nazwa;
     }
-    public String getDyscyplinaNazwa(String Dyscyplina_Id) throws SQLException {
+    private String getDyscyplinaNazwa(String Dyscyplina_Id) throws SQLException {
         String nazwa = null;
         ResultSet dyscyplinaSet= ConnectionDB.con.createStatement().executeQuery("SELECT Nazwa FROM Dyscyplina WHERE Id="+"'"+Dyscyplina_Id+"'");
         while(dyscyplinaSet.next()){
@@ -108,14 +105,29 @@ public class DruzynaController {
         window.show();
     }
     public void changeViewEditDruzyna() throws IOException {
+        if(table.getSelectionModel().getSelectedItem()!=null){
         nazwa=table.getSelectionModel().getSelectedItem().getNazwa();
         liga=table.getSelectionModel().getSelectedItem().getLiga();
         dyscyplina=table.getSelectionModel().getSelectedItem().getDyscyplina();
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Druzyna/EdytujDruzyna.fxml"));
-        Scene scene2=new Scene(view2);
-        Stage window=new Stage();
-        window.setScene(scene2);
-        window.show();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Druzyna/EdytujDruzyna.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
+    }
+    public void dodajZawodnikow() throws IOException {
+        if(table.getSelectionModel().getSelectedItem()!=null){
+            nazwa=table.getSelectionModel().getSelectedItem().getNazwa();
+            System.out.println(nazwa);
+            liga=table.getSelectionModel().getSelectedItem().getLiga();
+            dyscyplina=table.getSelectionModel().getSelectedItem().getDyscyplina();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Druzyna/DodajZawodnikow.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
     }
     public void getBack(ActionEvent event) throws IOException {
         Node source = (Node) event.getSource();
@@ -139,16 +151,35 @@ public class DruzynaController {
 
     public void deleteTeam(ActionEvent event) throws SQLException {
         DruzynaModel deleted = table.getSelectionModel().getSelectedItem();
-        String nazwaDeleted=deleted.getNazwa();
-        String druzynaId=getDruzynaId(nazwaDeleted);
-        Statement stmt = ConnectionDB.con.createStatement();
-        ResultSet result=stmt.executeQuery("SELECT * FROM Trener_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
-        if(result!=null){
-            ConnectionDB.con.createStatement().execute("DELETE Trener_has_Drużyna FROM Trener_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
+        if(deleted!=null){
+            String nazwaDeleted=deleted.getNazwa();
+            String druzynaId=getDruzynaId(nazwaDeleted);
+            Statement stmt = ConnectionDB.con.createStatement();
+            ResultSet result=stmt.executeQuery("SELECT * FROM Trener_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
+            if(result!=null){
+                ConnectionDB.con.createStatement().execute("DELETE Trener_has_Drużyna FROM Trener_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
+            }
+            ResultSet result2=stmt.executeQuery("SELECT GospodarzID FROM Spotkanie WHERE (GospodarzID="+"'"+druzynaId+"'"+"  or  GośćID="+"'"+druzynaId+"')");
+            if(result2!=null){
+                while(result2.next()){
+                    String gospodarzId=result2.getString(1);
+                    if(gospodarzId.equals(druzynaId)){
+                        System.out.println("hej");
+                        ConnectionDB.con.createStatement().execute("DELETE Spotkanie FROM Spotkanie WHERE GospodarzID="+"'"+druzynaId+"'");
+                    }else{
+                        System.out.println("hej2");
+                        ConnectionDB.con.createStatement().execute("DELETE Spotkanie FROM Spotkanie WHERE GośćID="+"'"+druzynaId+"'");
+                    }
+                }
+            }
+            ResultSet result3=stmt.executeQuery("SELECT * FROM Zawodnik_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
+            if(result3!=null){
+                ConnectionDB.con.createStatement().execute("DELETE Zawodnik_has_Drużyna FROM Zawodnik_has_Drużyna WHERE Drużyna_Id="+"'"+druzynaId+"'");
+            }
+            ConnectionDB.con.createStatement().execute("DELETE Drużyna FROM Drużyna WHERE Id="+"'"+druzynaId+"'");
+            System.out.println("Usunieto Druzyne :(");
+            initialize();
         }
-        ConnectionDB.con.createStatement().execute("DELETE Drużyna FROM Drużyna WHERE Nazwa="+"'"+nazwaDeleted+"'");
-        System.out.println("Usunieto Druzyne :(");
-        initialize();
     }
     public void searchTeam() throws SQLException {
         System.out.println("Szukam");

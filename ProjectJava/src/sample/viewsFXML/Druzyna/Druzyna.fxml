@@ -20,22 +20,23 @@
       </ImageView>
       <Button layoutX="88.0" layoutY="61.0" mnemonicParsing="false" onAction="#changeViewAddDruzyna" prefHeight="43.0" prefWidth="112.0" text="Dodaj drużyne" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getBack" text="powrót" />
-      <TableView fx:id="table" layoutX="242.0" layoutY="201.0" prefHeight="281.0" prefWidth="246.0">
+      <TableView fx:id="table" layoutX="243.0" layoutY="221.0" prefHeight="281.0" prefWidth="246.0">
         <columns>
           <TableColumn fx:id="nazwaCol" prefWidth="75.0" text="Nazwa" />
           <TableColumn fx:id="dyscyplinaCol" prefWidth="75.0" text="Dyscyplina" />
             <TableColumn fx:id="iloscZawodnikowCol" prefWidth="91.0" text="Liga" />
         </columns>
       </TableView>
-      <Text fill="WHITE" layoutX="287.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba drużyn:" wrappingWidth="122.13671875">
+      <Text fill="WHITE" layoutX="261.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba drużyn:" wrappingWidth="122.13671875">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
       <Button layoutX="313.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteTeam" prefHeight="43.0" prefWidth="103.0" text="Usuń" />
       <Button layoutX="508.0" layoutY="61.0" mnemonicParsing="false" onAction="#changeViewEditDruzyna" prefHeight="43.0" prefWidth="103.0" text="Edytuj" />
-      <Label fx:id="liczbaTXT" layoutX="426.0" layoutY="530.0" textFill="WHITE" />
-      <Button layoutX="439.0" layoutY="176.0" mnemonicParsing="false" onAction="#initialize" text="refresh" />
-      <TextField fx:id="searchTXT" alignment="TOP_CENTER" layoutX="290.0" layoutY="482.0" onKeyPressed="#searchTeam" onKeyReleased="#searchTeam" onKeyTyped="#searchTeam" promptText="search" />
+      <Label fx:id="liczbaTXT" layoutX="383.0" layoutY="558.0" textFill="WHITE" />
+      <Button layoutX="439.0" layoutY="196.0" mnemonicParsing="false" onAction="#initialize" text="refresh" />
+      <TextField fx:id="searchTXT" alignment="TOP_CENTER" layoutX="290.0" layoutY="502.0" onKeyPressed="#searchTeam" onKeyReleased="#searchTeam" onKeyTyped="#searchTeam" promptText="search" />
+      <Button layoutX="285.0" layoutY="130.0" mnemonicParsing="false" onAction="#dodajZawodnikow" prefHeight="43.0" prefWidth="162.0" text="Dodaj/Usuń zawodników" />
    </children>
 </AnchorPane>
