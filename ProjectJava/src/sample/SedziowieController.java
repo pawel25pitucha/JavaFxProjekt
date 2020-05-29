@@ -24,7 +24,6 @@ import java.sql.Statement;
 public class SedziowieController {
 
     private static String pesel;
-
     public static String getPesel() {
         return pesel;
     }
@@ -44,8 +43,8 @@ public class SedziowieController {
     private String search;
 
 
-    ObservableList<SedziaModel> oblist = FXCollections.observableArrayList();
-    ObservableList<SedziaModel> oblistFiltered = FXCollections.observableArrayList();
+    private ObservableList<SedziaModel> oblist = FXCollections.observableArrayList();
+    private ObservableList<SedziaModel> oblistFiltered = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() throws SQLException {
@@ -108,9 +107,7 @@ public class SedziowieController {
         }
     }
 
-
-
-    //szukanie zawodnika po imieniu nazwisku i peselu
+    //szukanie sedziego po imieniu nazwisku i peselu
     public void searchSedzia() throws SQLException {
         System.out.println("Szukam");
         oblistFiltered.clear();
@@ -132,6 +129,5 @@ public class SedziowieController {
         } else {
             initialize();
         }
-
     }
 }

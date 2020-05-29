@@ -20,7 +20,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class EditTrenerController {
-    private String dateFormat="yyyy-MM-dd";
 
     @FXML
     private TextField PeselTXT;
@@ -36,8 +35,7 @@ public class EditTrenerController {
     private CheckBox mTXT;
     @FXML
     private Text errorMSG;
-
-
+    private String dateFormat="yyyy-MM-dd";
 
     //Dane zawodnika
     private static String pesel=TrenerzyController.getPesel();

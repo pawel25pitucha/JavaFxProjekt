@@ -17,6 +17,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddPlayerController {
     @FXML
@@ -85,7 +86,7 @@ public class AddPlayerController {
 
 //Funkcja posredniczaca dodajaca zawodnika
 
-    public void addPlayer(ActionEvent event) throws IOException {
+    public void addPlayer(ActionEvent event) throws IOException, ParseException {
         //zapisanie danych
         pesel=PeselTXT.getText();
         imie=ImieTXT.getText();
@@ -109,7 +110,7 @@ public class AddPlayerController {
     //funkcja dodajaca zawdonika
 
     public void insertZawodnik(int idAdres){
-        String sql = "INSERT INTO Zawodnik(Adres_id,Pesel,Imię,Nazwisko,Data_urodzenia,Płeć,Poziom)VALUES (?, ?, ?, ?,?,?,?)";
+        String sql = "INSERT INTO Zawodnik(Adres_id,Pesel,Imię,Nazwisko,Data_urodzenia,Płeć,Poziom) VALUES (?, ?, ?, ?,?,?,?)";
         try {
             PreparedStatement statement = ConnectionDB.con.prepareStatement(sql);
             statement.setString(1, String.valueOf(idAdres));
@@ -172,7 +173,7 @@ public class AddPlayerController {
 
     ///--------------------Funkcje sprawdzajace wprowadzone dane-------------------------///
 
-    public boolean checkDaneOsobowe() {
+    public boolean checkDaneOsobowe() throws ParseException {
             if (kTXT.isSelected() && mTXT.isSelected() == false) {
                 plec = "k";
             } else if (mTXT.isSelected() && kTXT.isSelected() == false) {
@@ -183,9 +184,9 @@ public class AddPlayerController {
             }
             if (pesel.length() == 11 && pesel.chars().allMatch(Character::isDigit)) {
                 System.out.println("pesel ok");
-                if (imie.length() > 0 && imie.chars().allMatch(Character::isLetter)) {
+                if (imie.length() > 0 && imie.chars().allMatch(Character::isLetter) && Character.isUpperCase(imie.charAt(0))) {
                     System.out.println("imie ok");
-                    if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter)) {
+                    if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter) && Character.isUpperCase(nazwisko.charAt(0))) {
                         System.out.println("nazwisko ok");
                         if (isValid(data)) {
                             System.out.println("data ok");
@@ -194,19 +195,19 @@ public class AddPlayerController {
                                 return true;
                             }else errorMSG.setText("Błedne dane poziom!");
                         } else errorMSG.setText("Niepoprawny format daty!");
-                    } else errorMSG.setText("Nazwisko nie może zawierać cyfr ");
-                } else errorMSG.setText("Imię nie może zawierać cyfr ");
+                    } else errorMSG.setText("Nazwisko nie może zawierać cyfr oraz musi zaczynać się wielką literą");
+                } else errorMSG.setText("Imię nie może zawierać cyfr oraz musi zaczynać się wielką literą");
             } else errorMSG.setText("Niepoprawny pesel!");
             return false;
     }
     private boolean checkDaneAdres(){
-        if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter)){
-            if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter)){
+        if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter) && Character.isUpperCase(miejscowosc.charAt(0))){
+            if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter) && Character.isUpperCase(ulica.charAt(0))){
                 if(nr.length()>0 && nr.chars().allMatch(Character::isDigit)){
-                    if(kod.length()==6){
+                    if(kod.matches("[0-9]{2}-[0-9]{3}")){
                         return true;
                     }else errorMSG2.setText("Niepoprawny kod pocztowy!");
-                }else errorMSG2.setText("Numer domu nie moze być pusty!");
+                }else errorMSG2.setText("Numer domu nie moze być pusty oraz może zawierać tylko cyfry!");
             }else errorMSG2.setText("Niepoprawnie wprowadzona nazwa ulicy!");
         }else errorMSG2.setText("Niepoprawnie wprowadzona nazwa miejscowości!");
         return false;
@@ -214,7 +215,7 @@ public class AddPlayerController {
 
     //czy podana data jest zgodna z formatem bazy danych
 
-    public boolean isValid(String dateStr) {
+    public boolean isValid(String dateStr) throws ParseException {
         DateFormat sdf = new SimpleDateFormat(this.dateFormat);
         sdf.setLenient(false);
         try {
@@ -222,9 +223,20 @@ public class AddPlayerController {
         } catch (ParseException e) {
             return false;
         }
+        if(!compareDate(dateStr)) return false;
         return true;
     }
-
+    public boolean compareDate(String data) throws ParseException {
+        SimpleDateFormat sdformat = new SimpleDateFormat(this.dateFormat);
+        java.util.Date d1 = sdformat.parse(data);
+        java.util.Date date = new java.util.Date();
+        String dt=sdformat.format(date);
+        Date d2=sdformat.parse(dt);
+        if(d1.compareTo(d2) < 0) {
+            return false;
+        }
+        return true;
+    }
     //funkcja zmieniajaca okno
 
     @FXML

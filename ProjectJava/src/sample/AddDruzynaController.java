@@ -32,6 +32,8 @@ public class AddDruzynaController {
     @FXML
     private TextField searchTXT;
     @FXML
+    private Text errorMSG;
+    @FXML
     private TableView<TrenerModel> table;
     @FXML
     private TableColumn<TrenerModel, String> imieCol;
@@ -39,14 +41,13 @@ public class AddDruzynaController {
     private TableColumn<TrenerModel, String> nazwiskoCol;
     @FXML
     private TableColumn<TrenerModel, String> peselCol;
-    ObservableList<TrenerModel> oblist = FXCollections.observableArrayList();
-    ObservableList<TrenerModel> oblistFiltered = FXCollections.observableArrayList();
+    private ObservableList<TrenerModel> oblist = FXCollections.observableArrayList();
+    private ObservableList<TrenerModel> oblistFiltered = FXCollections.observableArrayList();
 
     private String dyscyplina;
     private String liga;
     private String nazwa;
     private String DruzynaId;
-
     private String trenerId;
 
     private ArrayList<String> dyscypliny=new ArrayList<>();
@@ -86,10 +87,10 @@ public class AddDruzynaController {
     public void saveDruzyna(ActionEvent event) throws SQLException {
         dyscyplina=dyscyplinaTXT.getValue();
         nazwa=nazwaTXT.getText();
-        String peselTrenera=table.getSelectionModel().getSelectedItem().getPesel();
-        trenerId=getIdTrenera(peselTrenera);
         liga=ligaTXT.getValue();
-        dodajDoBazy(event);
+        if(checkDane()){
+            dodajDoBazy(event);
+        }
     }
 
     public String getIdTrenera(String pesel) throws SQLException {
@@ -128,8 +129,6 @@ public class AddDruzynaController {
         String sql = "INSERT INTO Drużyna(Dyscyplina_Id,Liga_Id,Nazwa,Data_zalozenia)VALUES (?,?,?,?)";
         String sql2="INSERT INTO Trener_has_Drużyna(Trener_Id,Drużyna_Id,DataWstapienia)VALUES(?,?,?)";
         try {
-
-
             PreparedStatement statement = ConnectionDB.con.prepareStatement(sql);
             statement.setString(1, DyscyplinaId);
             statement.setString(2, ligaId);
@@ -148,9 +147,6 @@ public class AddDruzynaController {
             statement2.setString(2, DruzynaId);
             statement2.setString(3, formatter.format(date));
             int rowsInserted=statement2.executeUpdate();
-
-
-
 
             if (rowsInserted > 0) {
                 System.out.println("A new team was inserted successfully!");
@@ -187,6 +183,23 @@ public class AddDruzynaController {
             initialize();
         }
     }
+
+    public boolean checkDane() throws SQLException {
+        if(dyscyplina!=null){
+            if(!(nazwa.isEmpty())){
+                if(nazwa.chars().allMatch(Character::isLetter) && Character.isUpperCase(nazwa.charAt(0))){
+                    if(liga!=null){
+                        if(table.getSelectionModel().getSelectedItem()!=null){
+                            String peselTrenera=table.getSelectionModel().getSelectedItem().getPesel();
+                            trenerId=getIdTrenera(peselTrenera);
+                            return true;
+                        }else errorMSG.setText("Wybierz trenera!");
+                    }else errorMSG.setText("Wybierz ligę!");
+                }else errorMSG.setText("Wprowadz poprawną nazwę!");
+            }else errorMSG.setText("Wprowadz nazwę!");
+        }else errorMSG.setText("Wybierz dyscypline!");
+        return false;
     }
+}
 
 

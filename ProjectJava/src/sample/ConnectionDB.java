@@ -15,7 +15,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class ConnectionDB {
-    public static Connection con;
+    public static Connection con; //globalna polaczenia
+
     private static ArrayList<UserModel> users = new ArrayList<>();
     private static ArrayList<String> datas = new ArrayList<String>(3);
     private static String Login;
@@ -25,10 +26,6 @@ public class ConnectionDB {
         return Login;
     }
 
-    public static String getHaslo() {
-        return haslo;
-    }
-
     public static ArrayList<UserModel> getUsers() {
         return users;
     }
@@ -36,8 +33,7 @@ public class ConnectionDB {
     public static boolean ConnectionDB(String login, String password) throws ClassNotFoundException, SQLException {
         Login = login;
         haslo = md5(password);
-        String data1 = null;
-        String data2 = null;
+
         //ladowanie danych z pliku
         try {
             File myObj = new File("dane.txt");
@@ -56,7 +52,6 @@ public class ConnectionDB {
         con = DriverManager.getConnection(dbURL, datas.get(1), datas.get(2));
         ResultSet rs = ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Uzytkownik");
         while (rs.next()) {
-            System.out.println(rs.getString("Login"));
             users.add(new UserModel(rs.getString("Login"), rs.getString("Hasło")));
         }
         for (UserModel user : users) {

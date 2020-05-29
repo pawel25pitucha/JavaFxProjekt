@@ -9,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.ConnectionDB;
-
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -22,7 +19,6 @@ public class LoginController {
     private TextField passwordTXT;
     @FXML
     private Label Status;
-
 
     public void Login(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         if(ConnectionDB.ConnectionDB(usernameTXT.getText(),passwordTXT.getText())){

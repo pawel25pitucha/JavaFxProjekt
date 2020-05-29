@@ -20,7 +20,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class EditSedziaController {
-    private String dateFormat="yyyy-MM-dd";
 
     @FXML
     private TextField PeselTXT;
@@ -37,6 +36,7 @@ public class EditSedziaController {
     @FXML
     private Text errorMSG;
 
+    private String dateFormat="yyyy-MM-dd";
 
 
     //Dane sedziego

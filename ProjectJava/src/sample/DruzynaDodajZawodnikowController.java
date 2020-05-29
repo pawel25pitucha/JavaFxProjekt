@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,12 +45,11 @@ public class DruzynaDodajZawodnikowController {
     private Text druzynaNazwa;
     @FXML
     private Text statusMSG;
-
     private String nazwaDruzyny=DruzynaController.getNazwa();
 
-    ObservableList<PlayerModel> zawdonicyDruzyna = FXCollections.observableArrayList();
-    ObservableList<PlayerModel> zawdonicyDostepni = FXCollections.observableArrayList();
-    ObservableList<PlayerModel> oblistFiltered = FXCollections.observableArrayList();
+    private ObservableList<PlayerModel> zawdonicyDruzyna = FXCollections.observableArrayList();
+    private ObservableList<PlayerModel> zawdonicyDostepni = FXCollections.observableArrayList();
+    private ObservableList<PlayerModel> oblistFiltered = FXCollections.observableArrayList();
 
     public void initialize() throws SQLException {
         zawdonicyDostepni.clear();
@@ -70,7 +68,6 @@ public class DruzynaDodajZawodnikowController {
                 }
             }
         }
-
 
         ResultSet rs2 = ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Zawodnik");
         boolean status = true;
@@ -127,7 +124,7 @@ public class DruzynaDodajZawodnikowController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
 
-        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Main.fxml"));
+        Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Druzyna.fxml"));
         Scene scene2=new Scene(view2);
         Stage window=new Stage();
         window.setScene(scene2);

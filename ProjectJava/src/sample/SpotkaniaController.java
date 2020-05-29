@@ -56,8 +56,8 @@ public class SpotkaniaController {
     public static SpotkanieModel selected;
     private String search;
 
-    ObservableList<SpotkanieModel> oblist = FXCollections.observableArrayList();
-    ObservableList<SpotkanieModel> oblistFiltered = FXCollections.observableArrayList();
+    private ObservableList<SpotkanieModel> oblist = FXCollections.observableArrayList();
+    private ObservableList<SpotkanieModel> oblistFiltered = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
         table.getItems().clear();
         ResultSet rs = ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Spotkanie");
@@ -132,7 +132,6 @@ public class SpotkaniaController {
             initialize();
         }
     }
-
     public String getSpotkanieId(String gospodarzID,String goscID) throws SQLException {
         String id = null;
         ResultSet rs= ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Spotkanie WHERE (GospodarzID="+"'"+gospodarzID+"'"+" and GośćId="+"'"+goscID+"')");
@@ -163,7 +162,7 @@ public class SpotkaniaController {
         dataInfo.setText("Data:");
         cenaInfo.setText("Cena wejściówki:");
         sedziaInfo.setText("Sedzia:");
-       nazwa1TXT.setText(table.getSelectionModel().getSelectedItem().getNazwaGospodarz());
+        nazwa1TXT.setText(table.getSelectionModel().getSelectedItem().getNazwaGospodarz());
         nazwa2TXT.setText(table.getSelectionModel().getSelectedItem().getNazwaGosc());
         dataTXT.setText(table.getSelectionModel().getSelectedItem().getData());
         if(table.getSelectionModel().getSelectedItem().getCena()!=null){
@@ -173,6 +172,7 @@ public class SpotkaniaController {
         String nazwisko=getSedziaNazwisko(table.getSelectionModel().getSelectedItem().getSedziaId());
         sedziaTXT.setText(imie+"  "+nazwisko);
     }
+
     public void searchSpotkanie() throws SQLException {
         System.out.println("Szukam");
         oblistFiltered.clear();
@@ -194,6 +194,5 @@ public class SpotkaniaController {
         } else {
             initialize();
         }
-
     }
 }

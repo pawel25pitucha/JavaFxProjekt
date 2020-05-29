@@ -87,7 +87,6 @@ public class EditAdresController {
     }
 
 
-
     private boolean checkDaneAdres(){
         if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter)){
             if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter)){

@@ -23,16 +23,14 @@ import java.util.Date;
 
 public class EditDruzynaController {
 
-
-
         @FXML
         private ComboBox<String> dyscyplinaTXT;
         @FXML
         private ComboBox<String> ligaTXT;
         @FXML
         private TextField nazwaTXT;
-    @FXML
-    private TextField searchTXT;
+        @FXML
+        private TextField searchTXT;
         @FXML
         private TableView<TrenerModel> table;
         @FXML
@@ -41,8 +39,8 @@ public class EditDruzynaController {
         private TableColumn<TrenerModel, String> nazwiskoCol;
         @FXML
         private TableColumn<TrenerModel, String> peselCol;
-        ObservableList<TrenerModel> oblist = FXCollections.observableArrayList();
-        ObservableList<TrenerModel> oblistFiltered = FXCollections.observableArrayList();
+        private ObservableList<TrenerModel> oblist = FXCollections.observableArrayList();
+        private ObservableList<TrenerModel> oblistFiltered = FXCollections.observableArrayList();
 
         private String dyscyplina;
         private String liga;

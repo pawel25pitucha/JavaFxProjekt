@@ -23,13 +23,10 @@ public class MainController {
 
     @FXML
     private BarChart wykresPoziom;
-
     @FXML
     private CategoryAxis X;
-
     @FXML
     private CategoryAxis Y;
-
     @FXML
     private BarChart wykresDruzyn;
 

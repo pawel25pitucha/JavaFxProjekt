@@ -7,9 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.ConnectionDB;
 import sample.models.UserModel;
-
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

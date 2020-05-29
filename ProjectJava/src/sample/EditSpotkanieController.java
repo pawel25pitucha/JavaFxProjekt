@@ -53,8 +53,6 @@ public class EditSpotkanieController {
     private static String nazwa2;
     private String dateFormat="yyyy-MM-dd";
 
-
-
     public static String getHelper() {
         return helper;
     }
@@ -223,7 +221,6 @@ public class EditSpotkanieController {
                  nazwa1Ok=true;
              }
          }
-
 
         if(punkty1!=null && punkty2!=null){
             if(punkty1.chars().allMatch(Character::isDigit)&&punkty2.chars().allMatch(Character::isDigit)) {

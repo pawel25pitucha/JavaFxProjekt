@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.models.DruzynaModel;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,11 +21,11 @@ public class SzukajDruzynyController {
     @FXML
     private TableView<DruzynaModel> table;
     @FXML
-    public TableColumn nazwaCol;
+    private TableColumn nazwaCol;
     @FXML
-    public TableColumn dyscyplinaCol;
+    private TableColumn dyscyplinaCol;
     @FXML
-    public TableColumn ligaCol;
+    private TableColumn ligaCol;
     
     private static String nazwa1;
     private static String nazwa2;
@@ -51,8 +50,8 @@ public class SzukajDruzynyController {
         SzukajDruzynyController.nazwa2 = nazwa2;
     }
 
-    ObservableList<DruzynaModel> oblist = FXCollections.observableArrayList();
-    ObservableList<DruzynaModel> oblistFiltered = FXCollections.observableArrayList();
+    private ObservableList<DruzynaModel> oblist = FXCollections.observableArrayList();
+    private ObservableList<DruzynaModel> oblistFiltered = FXCollections.observableArrayList();
     @FXML
     public void initialize() throws SQLException {
         if(AddSpotkanieController.getHelper()==null){
@@ -115,6 +114,5 @@ public class SzukajDruzynyController {
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
         }
-
     }
 }

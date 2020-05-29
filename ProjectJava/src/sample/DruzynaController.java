@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.models.DruzynaModel;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,8 +56,8 @@ public class DruzynaController {
         return liga;
     }
 
-    ObservableList<DruzynaModel> oblist = FXCollections.observableArrayList();
-    ObservableList<DruzynaModel> oblistFiltered = FXCollections.observableArrayList();
+    private ObservableList<DruzynaModel> oblist = FXCollections.observableArrayList();
+    private ObservableList<DruzynaModel> oblistFiltered = FXCollections.observableArrayList();
     @FXML
     public void initialize() throws SQLException {
         table.getItems().clear();

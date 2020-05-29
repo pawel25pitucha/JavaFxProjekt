@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.ConnectionDB;
 import sample.models.PlayerModel;
 
 import java.io.IOException;
@@ -24,7 +23,6 @@ import java.sql.Statement;
 public class ZawodnicyController {
 
     private static String pesel;
-
     public static String getPesel() {
         return pesel;
     }
@@ -44,8 +42,8 @@ public class ZawodnicyController {
     private String search;
 
 
-    ObservableList<PlayerModel> oblist = FXCollections.observableArrayList();
-    ObservableList<PlayerModel> oblistFiltered = FXCollections.observableArrayList();
+    private ObservableList<PlayerModel> oblist = FXCollections.observableArrayList();
+    private ObservableList<PlayerModel> oblistFiltered = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() throws SQLException {
@@ -90,7 +88,6 @@ public class ZawodnicyController {
         }
         return id;
     }
-
     public void deletePlayer(ActionEvent event) throws SQLException {
         PlayerModel deleted = table.getSelectionModel().getSelectedItem();
         if(deleted!=null){
@@ -121,8 +118,6 @@ public class ZawodnicyController {
         }
     }
 
-
-
     //szukanie zawodnika po imieniu nazwisku i peselu
     public void searchPlayer() throws SQLException {
         System.out.println("Szukam");
@@ -147,6 +142,5 @@ public class ZawodnicyController {
         } else {
             initialize();
         }
-
     }
 }

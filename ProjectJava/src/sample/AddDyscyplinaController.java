@@ -6,11 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.models.PlayerModel;
-
-import java.sql.Array;
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +16,6 @@ public class AddDyscyplinaController {
     private TextField nazwaTXT;
     @FXML
     private Text errorMSG;
-
     private String dyscyplina;
     private ArrayList<String> lista =new ArrayList<String>();
 

@@ -3,7 +3,7 @@ package sample.models;
 import javafx.beans.property.SimpleStringProperty;
 
 public class PlayerModel {
-    SimpleStringProperty imie,nazwisko,pesel,poziom;
+   SimpleStringProperty imie,nazwisko,pesel,poziom;
 
     public PlayerModel(String imie, String nazwisko, String pesel, String poziom) {
         this.imie=new SimpleStringProperty(imie);

@@ -107,7 +107,7 @@ public class AddTrenerController {
         }
     }
 
-    //funkcja dodajaca zawdonika
+    //funkcja dodajaca Trenera
 
     public void insertTrener(int idAdres){
         String sql = "INSERT INTO Trener(Adres_id,Pesel,Imię,Nazwisko,Data_urodzenia,Płeć)VALUES (?, ?, ?, ?,?,?)";
@@ -129,9 +129,9 @@ public class AddTrenerController {
             ex.printStackTrace();
         }
     }
-    //Funkcja dodajaca adres powiazany z zawodnikiem
+    //Funkcja dodajaca adres powiazany z trenerem
 
-    public void insertAdres(ActionEvent event){
+    public void insertAdres(ActionEvent event) throws SQLException {
         miejscowosc=miejscowoscTXT.getText();
         ulica=ulicaTXT.getText();
         nr=nrDomuTXT.getText();
@@ -141,8 +141,6 @@ public class AddTrenerController {
 
         int id = 0;
         if(checkDaneAdres()){
-            try {
-
                 PreparedStatement statement = ConnectionDB.con.prepareStatement(sql);
                 statement.setString(1, miejscowosc);
                 statement.setString(2, ulica);
@@ -163,9 +161,6 @@ public class AddTrenerController {
                     stage.close();
                     insertTrener(id);
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
         }else System.out.println("bledne dane adresu");
     }
 
@@ -182,24 +177,24 @@ public class AddTrenerController {
         }
         if (pesel.length() == 11 && pesel.chars().allMatch(Character::isDigit)) {
             System.out.println("pesel ok");
-            if (imie.length() > 0 && imie.chars().allMatch(Character::isLetter)) {
+            if (imie.length() > 0 && imie.chars().allMatch(Character::isLetter) && Character.isUpperCase(imie.charAt(0))) {
                 System.out.println("imie ok");
-                if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter)) {
+                if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter) && Character.isUpperCase(nazwisko.charAt(0))) {
                     System.out.println("nazwisko ok");
                     if (isValid(data)) {
                         System.out.println("data ok");
                         return true;
                     } else errorMSG.setText("Niepoprawny format daty!");
-                } else errorMSG.setText("Nazwisko nie może zawierać cyfr ");
-            } else errorMSG.setText("Imię nie może zawierać cyfr ");
+                } else errorMSG.setText("Nazwisko nie może zawierać cyfr oraz musi zaczynać się wielką literą");
+            } else errorMSG.setText("Imię nie może zawierać cyfr oraz musi zaczynać się wielką literą");
         } else errorMSG.setText("Niepoprawny pesel!");
         return false;
     }
     private boolean checkDaneAdres(){
-        if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter)){
-            if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter)){
+        if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter) && Character.isUpperCase(miejscowosc.charAt(0))){
+            if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter) && Character.isUpperCase(ulica.charAt(0))){
                 if(nr.length()>0 && nr.chars().allMatch(Character::isDigit)){
-                    if(kod.length()==6){
+                    if(kod.matches("[0-9]{2}-[0-9]{3}")){
                         return true;
                     }else errorMSG2.setText("Niepoprawny kod pocztowy!");
                 }else errorMSG2.setText("Numer domu nie moze być pusty!");

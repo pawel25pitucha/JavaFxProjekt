@@ -21,7 +21,6 @@ import java.sql.Statement;
 
 public class TrenerzyController {
         private static String pesel;
-
         public static String getPesel() {
             return pesel;
         }
@@ -39,12 +38,11 @@ public class TrenerzyController {
         private String search;
 
 
-        ObservableList<TrenerModel> oblist = FXCollections.observableArrayList();
-        ObservableList<TrenerModel> oblistFiltered = FXCollections.observableArrayList();
+        private ObservableList<TrenerModel> oblist = FXCollections.observableArrayList();
+        private ObservableList<TrenerModel> oblistFiltered = FXCollections.observableArrayList();
 
         @FXML
         public void initialize() throws SQLException {
-
             table.getItems().clear();
             ResultSet rs = ConnectionDB.con.createStatement().executeQuery("SELECT * FROM Trener");
             while(rs.next()){
@@ -77,14 +75,14 @@ public class TrenerzyController {
             window.show();
         }
 
-    public String getTrenerId(String pesel) throws SQLException {
-        String id = null;
-        ResultSet trenerSet= ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Trener WHERE Pesel="+"'"+pesel+"'");
-        while(trenerSet.next()){
-            id=trenerSet.getString("Id");
+        public String getTrenerId(String pesel) throws SQLException {
+            String id = null;
+            ResultSet trenerSet= ConnectionDB.con.createStatement().executeQuery("SELECT Id FROM Trener WHERE Pesel="+"'"+pesel+"'");
+            while(trenerSet.next()){
+                id=trenerSet.getString("Id");
+            }
+            return id;
         }
-        return id;
-    }
 
         public void deleteTrener(ActionEvent event) throws SQLException {
             TrenerModel deleted = table.getSelectionModel().getSelectedItem();
@@ -117,8 +115,6 @@ public class TrenerzyController {
             }
         }
 
-
-
         //szukanie trenera po imieniu nazwisku i peselu
         public void searchTrener() throws SQLException {
             System.out.println("Szukam");
@@ -140,9 +136,6 @@ public class TrenerzyController {
             } else {
                 initialize();
             }
-
         }
-
-
 }
 
