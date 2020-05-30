@@ -141,41 +141,47 @@ public class EditSpotkanieController {
         if (checkDane(druzyna1TXT,druzyna2TXT,punktyGosc, punktyGospodarz, finalCena, data1,sedzia)) {
             String peselSedzia = table.getSelectionModel().getSelectedItem().getPesel();
             String sedziaID = getSedziaId(peselSedzia);
-            if (punktyGosc == null) {
-                String sql1 = "UPDATE Spotkanie SET GospodarzID=" + "'" + druzyna1ID + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql2 = "UPDATE Spotkanie SET GośćID=" + "'" + druzyna2ID + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql5 = "UPDATE Spotkanie SET Sędzia_Id=" + "'" + sedziaID + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql6 = "UPDATE Spotkanie SET Cena=" + "'" + finalCena + "' WHERE Id=" + "'" + spotkanieID + "'";
 
+                String sql1 = "UPDATE Spotkanie SET GospodarzID=? WHERE Id=?";
+                String sql2 = "UPDATE Spotkanie SET GośćID=? WHERE Id=?";
+                String sql5 = "UPDATE Spotkanie SET Sędzia_Id=? WHERE Id=?";
+                String sql6 = "UPDATE Spotkanie SET Cena=? WHERE Id=?";
+
+                String sql3 = "UPDATE Spotkanie SET GospodarzPunkty=? WHERE Id=?";
+                String sql4 = "UPDATE Spotkanie SET GośćPunkty=? WHERE Id=?";
                 try {
-                    Statement st = ConnectionDB.con.createStatement();
-                    st.executeUpdate(sql1);
-                    st.executeUpdate(sql2);
-                    st.executeUpdate(sql5);
-                    st.executeUpdate(sql6);
+                    PreparedStatement st = ConnectionDB.con.prepareStatement(sql1);
+                    PreparedStatement st2 = ConnectionDB.con.prepareStatement(sql2);
+                    PreparedStatement st3 = ConnectionDB.con.prepareStatement(sql5);
+                    PreparedStatement st4 = ConnectionDB.con.prepareStatement(sql6);
+                    st.setString(1,druzyna1ID);
+                    st.setString(2,spotkanieID);
+                    st2.setString(1,druzyna2ID);
+                    st2.setString(2,spotkanieID);
+                    st3.setString(1,sedziaID);
+                    st3.setString(2,spotkanieID);
+                    st4.setString(1,finalCena);
+                    st4.setString(2,spotkanieID);
+
+                    st.executeUpdate();
+                    st2.executeUpdate();
+                    st3.executeUpdate();
+                    st4.executeUpdate();
+                    if(punktyGosc!=null && punktyGospodarz!=null){
+                        PreparedStatement st5 = ConnectionDB.con.prepareStatement(sql3);
+                        PreparedStatement st6 = ConnectionDB.con.prepareStatement(sql4);
+                        st5.setString(1,punktyGospodarz);
+                        st5.setString(2,spotkanieID);
+                        st6.setString(1,punktyGosc);
+                        st6.setString(2,spotkanieID);
+                        st5.executeUpdate();
+                        st6.executeUpdate();
+                    }
+
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-            } else {
-                String sql1 = "UPDATE Spotkanie SET GospodarzID=" + "'" + druzyna1ID + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql2 = "UPDATE Spotkanie SET GośćID=" + "'" + druzyna2ID + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql3 = "UPDATE Spotkanie SET GospodarzPunkty=" + "'" + punktyGospodarz + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql4 = "UPDATE Spotkanie SET GośćPunkty=" + "'" + punktyGosc + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql5 = "UPDATE Spotkanie SET Sędzia_Id=" + "'" + sedziaID + "' WHERE Id=" + "'" + spotkanieID + "'";
-                String sql6 = "UPDATE Spotkanie SET Cena=" + "'" + finalCena + "' WHERE Id=" + "'" + spotkanieID + "'";
 
-                try {
-                    Statement st = ConnectionDB.con.createStatement();
-                    st.executeUpdate(sql1);
-                    st.executeUpdate(sql2);
-                    st.executeUpdate(sql3);
-                    st.executeUpdate(sql4);
-                    st.executeUpdate(sql5);
-                    st.executeUpdate(sql6);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="736.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddSpotkanieController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="736.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddSpotkanieController">
    <children>
       <ImageView fitHeight="841.0" fitWidth="738.0">
          <image>
@@ -50,12 +56,12 @@
       <TextField fx:id="punkty2" alignment="CENTER" layoutX="490.0" layoutY="197.0" prefHeight="60.0" prefWidth="77.0" promptText="Punkty" />
       <Text fx:id="errorMSG" fill="RED" layoutX="205.0" layoutY="691.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="326.0" />
       <Button fx:id="addBTN" layoutX="304.0" layoutY="618.0" mnemonicParsing="false" onAction="#addSpotkanie" prefHeight="48.0" prefWidth="109.0" text="Dodaj" />
-      <TextField fx:id="data" alignment="CENTER" layoutX="284.0" layoutY="525.0" promptText="yyyy/MM/dd" />
       <Text fill="WHITE" layoutX="344.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getBack" text="Powrót" />
+      <DatePicker fx:id="DataTXT" layoutX="281.0" layoutY="524.0" promptText="yyyy-MM-dd" />
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,17 +67,29 @@ public class EditAdresSedziaController {
         kod = kodTXT.getText();
         String id=getId();
 
-        String sql1 = "UPDATE Adres SET Miejscowość=" + "'" + miejscowosc +"'"+ "WHERE Id=" + "'" + id + "'";
-        String sql2 = "UPDATE Adres SET Ulica=" + "'" + ulica +"'"+ "WHERE Id=" + "'" + id + "'";
-        String sql3 = "UPDATE Adres SET Nr_domu=" + "'" + nr +"'"+ "WHERE Id=" + "'" + id + "'";
-        String sql4 = "UPDATE Adres SET Kod_pocztowy=" + "'" + kod +"'"+ "WHERE Id=" + "'" + id + "'";
+        String sql1 = "UPDATE Adres SET Miejscowość= ? WHERE Id=?  ";
+        String sql2 = "UPDATE Adres SET Ulica=? WHERE Id=?";
+        String sql3 = "UPDATE Adres SET Nr_domu=? WHERE Id=?";
+        String sql4 = "UPDATE Adres SET Kod_pocztowy=? WHERE Id=?";
 
         if (checkDaneAdres()) {
-            Statement stmt = ConnectionDB.con.createStatement();
-            stmt.executeUpdate(sql1);
-            stmt.executeUpdate(sql2);
-            stmt.executeUpdate(sql3);
-            stmt.executeUpdate(sql4);
+            PreparedStatement stmt = ConnectionDB.con.prepareStatement(sql1);
+            PreparedStatement stmt2 = ConnectionDB.con.prepareStatement(sql2);
+            PreparedStatement stmt3 = ConnectionDB.con.prepareStatement(sql3);
+            PreparedStatement stmt4 = ConnectionDB.con.prepareStatement(sql4);
+            stmt.setString(1,miejscowosc);
+            stmt.setString(2,id);
+            stmt2.setString(1,ulica);
+            stmt2.setString(2,id);
+            stmt3.setString(1,nr);
+            stmt3.setString(2,id);
+            stmt4.setString(1,kod);
+            stmt4.setString(2,id);
+
+            stmt.executeUpdate();
+            stmt2.executeUpdate();
+            stmt3.executeUpdate();
+            stmt4.executeUpdate();
 
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();

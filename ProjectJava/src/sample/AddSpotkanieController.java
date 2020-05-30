@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -23,6 +24,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class AddSpotkanieController {
@@ -46,7 +48,7 @@ public class AddSpotkanieController {
     @FXML
     private TextField cena;
     @FXML
-    private TextField data;
+    private DatePicker DataTXT;
     private ObservableList<SedziaModel> oblist = FXCollections.observableArrayList();
     private ObservableList<SedziaModel> oblistFiltered = FXCollections.observableArrayList();
     private static String helper;
@@ -121,7 +123,7 @@ public class AddSpotkanieController {
         String punktyGosc = punkty2.getText();
         SedziaModel sedzia = table.getSelectionModel().getSelectedItem();
         String finalCena = cena.getText();
-        String data1 = data.getText();
+        String data1 = DataTXT.getValue().format(DateTimeFormatter.ofPattern(this.dateFormat));
         String nazwa = druzyna1.getText();
         String nazwA = druzyna2.getText();
 

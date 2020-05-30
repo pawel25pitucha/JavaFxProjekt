@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -99,20 +100,41 @@ public class EditPlayerController {
     }
     public static void updateZawodnik() throws SQLException {
             String id=getId();
-        String sql1 = "UPDATE Zawodnik SET Pesel="+"'"+pesel+"'"+"WHERE Id="+"'"+id+"'";
-        String sql2 = "UPDATE Zawodnik SET Imię="+"'"+imie+"'"+"WHERE Id="+"'"+id+"'";
-        String sql3 = "UPDATE Zawodnik SET Nazwisko="+"'"+nazwisko+"'"+"WHERE Id="+"'"+id+"'";
-        String sql4 = "UPDATE Zawodnik SET Data_urodzenia="+"'"+data+"'"+"WHERE Id="+"'"+id+"'";
-        String sql5 = "UPDATE Zawodnik SET Poziom="+"'"+poziom+"'"+"WHERE Id="+"'"+id+"'";
-        String sql6 = "UPDATE Zawodnik SET Płeć="+"'"+plec+"'"+"WHERE Id="+"'"+id+"'";
+        String sql1 = "UPDATE Zawodnik SET Pesel=? WHERE Id=?";
+        String sql2 = "UPDATE Zawodnik SET Imię=? WHERE Id=?";
+        String sql3 = "UPDATE Zawodnik SET Nazwisko=? WHERE Id=?";
+        String sql4 = "UPDATE Zawodnik SET Data_urodzenia=? WHERE Id=?";
+        String sql5 = "UPDATE Zawodnik SET Poziom=? WHERE Id=?";
+        String sql6 = "UPDATE Zawodnik SET Płeć=? WHERE Id=?";
 
-            Statement stmt = ConnectionDB.con.createStatement();
-            stmt.executeUpdate(sql1);
-            stmt.executeUpdate(sql2);
-            stmt.executeUpdate(sql3);
-            stmt.executeUpdate(sql4);
-            stmt.executeUpdate(sql5);
-            stmt.executeUpdate(sql6);
+        PreparedStatement stmt = ConnectionDB.con.prepareStatement(sql1);
+        PreparedStatement stmt2 = ConnectionDB.con.prepareStatement(sql2);
+        PreparedStatement stmt3 = ConnectionDB.con.prepareStatement(sql3);
+        PreparedStatement stmt4 = ConnectionDB.con.prepareStatement(sql4);
+        PreparedStatement stmt5 = ConnectionDB.con.prepareStatement(sql5);
+        PreparedStatement stmt6 = ConnectionDB.con.prepareStatement(sql6);
+
+        stmt.setString(1,pesel);
+        stmt.setString(2,id);
+        stmt2.setString(1,imie);
+        stmt2.setString(2,id);
+        stmt3.setString(1,nazwisko);
+        stmt3.setString(2,id);
+        stmt4.setString(1,data);
+        stmt4.setString(2,id);
+        stmt5.setString(1,poziom);
+        stmt5.setString(2,id);
+        stmt6.setString(1,plec);
+        stmt6.setString(2,id);
+
+        stmt.executeUpdate();
+        stmt2.executeUpdate();
+        stmt3.executeUpdate();
+        stmt4.executeUpdate();
+        stmt5.executeUpdate();
+        stmt6.executeUpdate();
+
+
 
     }
 

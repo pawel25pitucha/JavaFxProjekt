@@ -145,16 +145,30 @@ public class EditDruzynaController {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             java.util.Date date = new Date();
 
-            String sql1 = "UPDATE Drużyna SET Nazwa="+"'"+nazwa+"'"+"WHERE Nazwa="+"'"+oldNazwa+"'";
-            String sql2 = "UPDATE Drużyna SET Liga_Id="+"'"+ligaId+"'"+"WHERE Nazwa="+"'"+nazwa+"'";
-            String sql3 = "UPDATE Drużyna SET Dyscyplina_Id="+"'"+DyscyplinaId+"'"+"WHERE Nazwa="+"'"+nazwa+"'";
-            String sql4 = "UPDATE Drużyna SET Data_zalozenia="+"'"+formatter.format(date)+"'"+"WHERE Nazwa="+"'"+nazwa+"'";
+            String sql1 = "UPDATE Drużyna SET Nazwa= ? WHERE Nazwa= ?";
+            String sql2 = "UPDATE Drużyna SET Liga_Id= ? WHERE Nazwa= ?";
+            String sql3 = "UPDATE Drużyna SET Dyscyplina_Id= ? WHERE Nazwa= ?";
+            String sql4 = "UPDATE Drużyna SET Data_zalozenia= ? WHERE Nazwa= ?";
             try {
-                Statement stmt = ConnectionDB.con.createStatement();
-                stmt.executeUpdate(sql1);
-                stmt.executeUpdate(sql2);
-                stmt.executeUpdate(sql3);
-                stmt.executeUpdate(sql4);
+                PreparedStatement stmt = ConnectionDB.con.prepareStatement(sql1);
+                PreparedStatement stmt2 = ConnectionDB.con.prepareStatement(sql2);
+                PreparedStatement stmt3 = ConnectionDB.con.prepareStatement(sql3);
+                PreparedStatement stmt4 = ConnectionDB.con.prepareStatement(sql4);
+                stmt.setString(1,nazwa);
+                stmt.setString(2,oldNazwa);
+                stmt2.setString(1,ligaId);
+                stmt2.setString(2,nazwa);
+                stmt3.setString(1,DyscyplinaId);
+                stmt3.setString(2,nazwa);
+                stmt4.setString(1,formatter.format(date));
+                stmt4.setString(2,nazwa);
+
+
+                stmt.executeUpdate();
+                stmt2.executeUpdate();
+                stmt3.executeUpdate();
+                stmt4.executeUpdate();
+
 
             } catch (SQLException ex) {
                 ex.printStackTrace();

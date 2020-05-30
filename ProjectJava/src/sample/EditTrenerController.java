@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -92,18 +93,33 @@ public class EditTrenerController {
     }
     public static void updateTrener() throws SQLException {
         String id=getId();
-        String sql1 = "UPDATE Trener SET Pesel="+"'"+pesel+"'"+"WHERE Id="+"'"+id+"'";
-        String sql2 = "UPDATE Trener SET Imię="+"'"+imie+"'"+"WHERE Id="+"'"+id+"'";
-        String sql3 = "UPDATE Trener SET Nazwisko="+"'"+nazwisko+"'"+"WHERE Id="+"'"+id+"'";
-        String sql4 = "UPDATE Trener SET Data_urodzenia="+"'"+data+"'"+"WHERE Id="+"'"+id+"'";
-        String sql5 = "UPDATE Trener SET Płeć="+"'"+plec+"'"+"WHERE Id="+"'"+id+"'";
+        String sql1 = "UPDATE Trener SET Pesel=? WHERE Id=?";
+        String sql2 = "UPDATE Trener SET Imię=? WHERE Id=?";
+        String sql3 = "UPDATE Trener SET Nazwisko=? WHERE Id=?";
+        String sql4 = "UPDATE Trener SET Data_urodzenia=? WHERE Id=?";
+        String sql5 = "UPDATE Trener SET Płeć=? WHERE Id=?";
 
-        Statement stmt = ConnectionDB.con.createStatement();
-        stmt.executeUpdate(sql1);
-        stmt.executeUpdate(sql2);
-        stmt.executeUpdate(sql3);
-        stmt.executeUpdate(sql4);
-        stmt.executeUpdate(sql5);
+        PreparedStatement stmt = ConnectionDB.con.prepareStatement(sql1);
+        PreparedStatement stmt2 = ConnectionDB.con.prepareStatement(sql2);
+        PreparedStatement stmt3 = ConnectionDB.con.prepareStatement(sql3);
+        PreparedStatement stmt4 = ConnectionDB.con.prepareStatement(sql4);
+        PreparedStatement stmt5 = ConnectionDB.con.prepareStatement(sql5);
+        stmt.setString(1,pesel);
+        stmt.setString(2,id);
+        stmt2.setString(1,imie);
+        stmt2.setString(2,id);
+        stmt3.setString(1,nazwisko);
+        stmt3.setString(2,id);
+        stmt4.setString(1,data);
+        stmt4.setString(2,id);
+        stmt5.setString(1,plec);
+        stmt5.setString(2,id);
+
+        stmt.executeUpdate();
+        stmt2.executeUpdate();
+        stmt3.executeUpdate();
+        stmt4.executeUpdate();
+        stmt5.executeUpdate();
 
         System.out.println("zmienioneeeeeeee");
 

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,7 +19,6 @@
       <TextField fx:id="PeselTXT" layoutX="334.0" layoutY="112.0" promptText="Pesel" />
       <TextField fx:id="ImieTXT" layoutX="334.0" layoutY="168.0" promptText="Imię" />
       <TextField fx:id="NazwiskoTXT" layoutX="334.0" layoutY="227.0" promptText="Nazwisko" />
-      <TextField fx:id="DataTXT" layoutX="334.0" layoutY="289.0" promptText="yyyy-MM-dd" />
       <Button fx:id="DodajBTN" layoutX="351.0" layoutY="441.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: darkgrey;" styleClass="hover" text="Dodaj" textFill="WHITE" />
       <CheckBox fx:id="mTXT" layoutX="364.0" layoutY="333.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="90.0" text="mężczyzna" textFill="WHITE" />
       <CheckBox fx:id="kTXT" layoutX="364.0" layoutY="357.0" mnemonicParsing="false" text="kobieta" textFill="#f8f8f8" />
@@ -49,5 +49,6 @@
          </font>
       </Text>
       <TextField fx:id="poziomTXT" layoutX="334.0" layoutY="390.0" promptText="Młodzik/Junior/Senior" />
+      <DatePicker fx:id="dataTXT" layoutX="338.0" layoutY="290.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-MM-dd" />
    </children>
 </AnchorPane>

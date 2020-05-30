@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,6 +18,8 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class AddPlayerController {
@@ -27,7 +30,7 @@ public class AddPlayerController {
     @FXML
     private TextField NazwiskoTXT;
     @FXML
-    private TextField DataTXT;
+    private DatePicker dataTXT;
     @FXML
     private TextField poziomTXT;
     @FXML
@@ -87,12 +90,6 @@ public class AddPlayerController {
 //Funkcja posredniczaca dodajaca zawodnika
 
     public void addPlayer(ActionEvent event) throws IOException, ParseException {
-        //zapisanie danych
-        pesel=PeselTXT.getText();
-        imie=ImieTXT.getText();
-        nazwisko=NazwiskoTXT.getText();
-        data=DataTXT.getText();
-        poziom=poziomTXT.getText();
 
         if(checkDaneOsobowe()){
             //zamkniecie okna
@@ -174,11 +171,45 @@ public class AddPlayerController {
     ///--------------------Funkcje sprawdzajace wprowadzone dane-------------------------///
 
     public boolean checkDaneOsobowe() throws ParseException {
+        //zapisanie danych
+        pesel=PeselTXT.getText();
+        imie=ImieTXT.getText();
+        nazwisko=NazwiskoTXT.getText();
+        LocalDate Data=dataTXT.getValue();
+        System.out.println(Data);
+        poziom=poziomTXT.getText();
+
+        if(pesel.isEmpty()){
+            errorMSG.setText("Wprowdź pesel");
+            return false;
+        }
+        if(imie.isEmpty()){
+            errorMSG.setText("Wprowdź imię");
+            return false;
+        }
+        if(nazwisko.isEmpty()){
+            errorMSG.setText("Wprowdź nazwisko");
+            return false;
+        }
+        if(Data==null){
+            errorMSG.setText("Wprowdź datę");
+            return false;
+        }
+        data= Data.format(DateTimeFormatter.ofPattern(this.dateFormat));
+        if(poziom.isEmpty()){
+            errorMSG.setText("Wprowdź poziom");
+            return false;
+        }
+        if(pesel.isEmpty()){
+            errorMSG.setText("Wprowdź pesel");
+            return false;
+        }
+
             if (kTXT.isSelected() && mTXT.isSelected() == false) {
                 plec = "k";
             } else if (mTXT.isSelected() && kTXT.isSelected() == false) {
                 plec = "m";
-            } else {
+            } else{
                 errorMSG.setText("Złe dane dotyczące płci!");
                 return false;
             }
@@ -232,7 +263,7 @@ public class AddPlayerController {
         java.util.Date date = new java.util.Date();
         String dt=sdformat.format(date);
         Date d2=sdformat.parse(dt);
-        if(d1.compareTo(d2) < 0) {
+        if(d1.compareTo(d2) > 0) {
             return false;
         }
         return true;

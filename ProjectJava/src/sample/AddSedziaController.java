@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -19,6 +20,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class AddSedziaController {
@@ -29,7 +31,7 @@ public class AddSedziaController {
     @FXML
     private TextField NazwiskoTXT;
     @FXML
-    private TextField DataTXT;
+    private DatePicker DataTXT;
     @FXML
     private CheckBox kTXT;
     @FXML
@@ -91,7 +93,7 @@ public class AddSedziaController {
         pesel=PeselTXT.getText();
         imie=ImieTXT.getText();
         nazwisko=NazwiskoTXT.getText();
-        data=DataTXT.getText();
+        data=DataTXT.getValue().format(DateTimeFormatter.ofPattern(this.dateFormat));
 
 
         if(checkDaneOsobowe()){
@@ -226,7 +228,7 @@ public class AddSedziaController {
         java.util.Date date = new java.util.Date();
         String dt=sdformat.format(date);
         Date d2=sdformat.parse(dt);
-        if(d1.compareTo(d2) < 0) {
+        if(d1.compareTo(d2) > 0) {
             return false;
         }
         return true;
