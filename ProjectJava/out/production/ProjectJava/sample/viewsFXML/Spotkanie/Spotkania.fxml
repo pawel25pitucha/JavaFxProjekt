@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -17,7 +18,7 @@
             <Image url="@../../pics/basketball.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="209.0" layoutY="75.0" prefHeight="575.0" prefWidth="363.0" style="-fx-background-color: lightgrey;">
+      <AnchorPane layoutX="15.0" layoutY="75.0" prefHeight="575.0" prefWidth="749.0" style="-fx-background-color: lightgrey;">
          <children>
             <Text fx:id="nazwa1TXT" layoutX="25.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="139.0">
                <font>
@@ -64,6 +65,24 @@
                   <Font size="14.0" />
                </font>
             </Text>
+            <Text layoutX="643.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FILTRY" />
+            <TextField fx:id="cena1TXT" layoutX="608.0" layoutY="81.0" prefHeight="25.0" prefWidth="43.0" />
+            <TextField fx:id="cena2TXT" layoutX="678.0" layoutY="81.0" prefHeight="25.0" prefWidth="43.0" />
+            <Text layoutX="653.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" do" />
+            <Text layoutX="644.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENA">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="data1TXT" layoutX="600.0" layoutY="145.0" prefHeight="25.0" prefWidth="130.0" promptText="data początkowa" />
+            <DatePicker fx:id="data2TXT" layoutX="601.0" layoutY="181.0" prefHeight="25.0" prefWidth="130.0" promptText="data końcowa" />
+            <Text layoutX="647.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATA">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="640.0" layoutY="232.0" mnemonicParsing="false" onAction="#filtruj" text="Filtruj" />
+            <Button layoutX="634.0" layoutY="263.0" mnemonicParsing="false" onAction="#clearFiltr" text="Wyczyść" />
          </children>
       </AnchorPane>
       <TableView fx:id="table" layoutX="276.0" layoutY="132.0" prefHeight="256.0" prefWidth="229.0">

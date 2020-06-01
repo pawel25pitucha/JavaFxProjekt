@@ -106,6 +106,17 @@ public class ZawodnicyController {
         }
     }
 
+    public void szczegoly() throws IOException {
+        PlayerModel selected = table.getSelectionModel().getSelectedItem();
+        if(selected!=null){
+            pesel=selected.getPesel();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Zawodnik/szczegoly.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
+    }
     public void editPlayer(ActionEvent event) throws IOException {
         PlayerModel selected = table.getSelectionModel().getSelectedItem();
         if(selected!=null){

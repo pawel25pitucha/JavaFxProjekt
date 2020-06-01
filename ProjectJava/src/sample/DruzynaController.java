@@ -115,6 +115,18 @@ public class DruzynaController {
             window.show();
         }
     }
+    public void szczegoly() throws IOException {
+        if(table.getSelectionModel().getSelectedItem()!=null){
+            nazwa=table.getSelectionModel().getSelectedItem().getNazwa();
+            liga=table.getSelectionModel().getSelectedItem().getLiga();
+            dyscyplina=table.getSelectionModel().getSelectedItem().getDyscyplina();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Druzyna/Szczegoly.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
+    }
     public void dodajZawodnikow() throws IOException {
         if(table.getSelectionModel().getSelectedItem()!=null){
             nazwa=table.getSelectionModel().getSelectedItem().getNazwa();

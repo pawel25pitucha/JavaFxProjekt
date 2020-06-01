@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="425.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LigaController">
+   <children>
+      <Text fill="WHITE" layoutX="143.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj dyscypline" wrappingWidth="159.05859375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nazwaTXT" alignment="CENTER" layoutX="138.0" layoutY="87.0" promptText="Nazwa" />
+      <Button layoutX="189.0" layoutY="135.0" mnemonicParsing="false" onAction="#addDyscyplina" text="Dodaj" />
+      <Text fx:id="errorMSG" fill="RED" layoutX="100.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="225.13671875" />
+      <TableView fx:id="table" layoutX="148.0" layoutY="185.0" prefHeight="200.0" prefWidth="149.0">
+        <columns>
+          <TableColumn fx:id="nazwaCol" prefWidth="150.0" text="Nazwa" />
+          <TableColumn minWidth="0.0" prefWidth="0.0" />
+        </columns>
+      </TableView>
+      <Button layoutX="197.0" layoutY="395.0" mnemonicParsing="false" onAction="#delete" text="usuń" />
+   </children>
+</AnchorPane>

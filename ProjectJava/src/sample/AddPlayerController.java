@@ -87,7 +87,10 @@ public class AddPlayerController {
         return kod;
  }
 
-//Funkcja posredniczaca dodajaca zawodnika
+    public static void setImie(String imie) {
+        AddPlayerController.imie = imie;
+    }
+    //Funkcja posredniczaca dodajaca zawodnika
 
     public void addPlayer(ActionEvent event) throws IOException, ParseException {
 
@@ -205,6 +208,7 @@ public class AddPlayerController {
             return false;
         }
 
+
             if (kTXT.isSelected() && mTXT.isSelected() == false) {
                 plec = "k";
             } else if (mTXT.isSelected() && kTXT.isSelected() == false) {
@@ -215,9 +219,9 @@ public class AddPlayerController {
             }
             if (pesel.length() == 11 && pesel.chars().allMatch(Character::isDigit)) {
                 System.out.println("pesel ok");
-                if (imie.length() > 0 && imie.chars().allMatch(Character::isLetter) && Character.isUpperCase(imie.charAt(0))) {
+                if (imie.length() > 0 && imie.chars().allMatch(Character::isLetter) && Character.isUpperCase(imie.charAt(0)) && imie.substring(1).chars().allMatch(Character::isLowerCase)) {
                     System.out.println("imie ok");
-                    if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter) && Character.isUpperCase(nazwisko.charAt(0))) {
+                    if (nazwisko.length() > 0 && nazwisko.chars().allMatch(Character::isLetter) && Character.isUpperCase(nazwisko.charAt(0)) && nazwisko.substring(1).chars().allMatch(Character::isLowerCase)) {
                         System.out.println("nazwisko ok");
                         if (isValid(data)) {
                             System.out.println("data ok");
@@ -232,8 +236,8 @@ public class AddPlayerController {
             return false;
     }
     private boolean checkDaneAdres(){
-        if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter) && Character.isUpperCase(miejscowosc.charAt(0))){
-            if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter) && Character.isUpperCase(ulica.charAt(0))){
+        if(miejscowosc.length()>0 && miejscowosc.chars().allMatch(Character::isLetter) && Character.isUpperCase(miejscowosc.charAt(0)) && miejscowosc.substring(1).chars().allMatch(Character::isLowerCase)){
+            if(ulica.length()>0 && ulica.chars().allMatch(Character::isLetter) && Character.isUpperCase(ulica.charAt(0)) && ulica.substring(1).chars().allMatch(Character::isLowerCase)){
                 if(nr.length()>0 && nr.chars().allMatch(Character::isDigit)){
                     if(kod.matches("[0-9]{2}-[0-9]{3}")){
                         return true;

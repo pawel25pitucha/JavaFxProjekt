@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="342.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditAdminController">
+   <children>
+      <TextField fx:id="LoginTXT" layoutX="148.0" layoutY="14.0" promptText="Login" />
+      <PasswordField fx:id="password1TXT" layoutX="148.0" layoutY="52.0" promptText="password" />
+      <PasswordField fx:id="password2TXT" layoutX="148.0" layoutY="93.0" promptText="password" />
+      <Text fill="WHITE" layoutX="63.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Twoj login">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="77.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hasło">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="51.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nowe hasło">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="createBTN" layoutX="146.0" layoutY="171.0" mnemonicParsing="false" onAction="#addNewAdmin" text="Edit" />
+      <Text fx:id="errorMSG" fill="RED" layoutX="71.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.150390625" />
+   </children>
+</AnchorPane>

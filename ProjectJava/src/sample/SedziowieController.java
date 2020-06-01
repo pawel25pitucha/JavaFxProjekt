@@ -106,6 +106,17 @@ public class SedziowieController {
             window.show();
         }
     }
+    public void szczegoly(ActionEvent event) throws IOException {
+        SedziaModel selected = table.getSelectionModel().getSelectedItem();
+        if(selected!=null){
+            pesel=selected.getPesel();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Sedzia/Szczegoly.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
+    }
 
     //szukanie sedziego po imieniu nazwisku i peselu
     public void searchSedzia() throws SQLException {

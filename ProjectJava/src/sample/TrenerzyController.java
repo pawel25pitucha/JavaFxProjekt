@@ -114,6 +114,17 @@ public class TrenerzyController {
                 window.show();
             }
         }
+    public void szczegoly() throws IOException {
+        TrenerModel selected = table.getSelectionModel().getSelectedItem();
+        if(selected!=null){
+            pesel=selected.getPesel();
+            Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Trener/Szczegoly.fxml"));
+            Scene scene2=new Scene(view2);
+            Stage window=new Stage();
+            window.setScene(scene2);
+            window.show();
+        }
+    }
 
         //szukanie trenera po imieniu nazwisku i peselu
         public void searchTrener() throws SQLException {

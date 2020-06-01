@@ -101,6 +101,7 @@ public class EditSpotkanieController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
+
     public void szukajDruzyny2(ActionEvent event) throws IOException {
         helper="2";
         Parent view2 = FXMLLoader.load(getClass().getResource("viewsFXML/Spotkanie/SzukajDruzyny.fxml"));
@@ -125,6 +126,7 @@ public class EditSpotkanieController {
     }
 
     public void addSpotkanie(ActionEvent event) throws SQLException {
+
         String punktyGospodarz = punkty1.getText();
         String punktyGosc = punkty2.getText();
         SedziaModel sedzia=table.getSelectionModel().getSelectedItem();
@@ -146,9 +148,10 @@ public class EditSpotkanieController {
                 String sql2 = "UPDATE Spotkanie SET GośćID=? WHERE Id=?";
                 String sql5 = "UPDATE Spotkanie SET Sędzia_Id=? WHERE Id=?";
                 String sql6 = "UPDATE Spotkanie SET Cena=? WHERE Id=?";
-
                 String sql3 = "UPDATE Spotkanie SET GospodarzPunkty=? WHERE Id=?";
                 String sql4 = "UPDATE Spotkanie SET GośćPunkty=? WHERE Id=?";
+
+
                 try {
                     PreparedStatement st = ConnectionDB.con.prepareStatement(sql1);
                     PreparedStatement st2 = ConnectionDB.con.prepareStatement(sql2);

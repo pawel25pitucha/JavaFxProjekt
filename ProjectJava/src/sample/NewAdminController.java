@@ -54,6 +54,18 @@ public class NewAdminController {
         password1=password1TXT.getText();
         password2=password2TXT.getText();
 
+        if(login.isEmpty()){
+            errorMSG.setText("Podaj login");
+            return false;
+        }
+        if(password1.isEmpty()){
+            errorMSG.setText("Podaj haslo");
+            return false;
+        }
+        if(password2.isEmpty()){
+            errorMSG.setText("Potwierdź haslo");
+            return false;
+        }
         if(password1.equals(password2)){
             ArrayList<UserModel> users = ConnectionDB.getUsers();
             for(UserModel user : users){

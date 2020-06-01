@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="384.0" prefWidth="384.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SzczegolyTrenerController">
+   <children>
+      <Label fx:id="liczbaTXT" layoutX="383.0" layoutY="558.0" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="33.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię" wrappingWidth="74.7109375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="33.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="36.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pesel">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="35.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="33.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Płeć">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="145.0" layoutY="330.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="75.0" text="OK" />
+      <Text fx:id="imieTXT" fill="WHITE" layoutX="159.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="220.814453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="nazwiskoTXT" fill="WHITE" layoutX="159.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="220.814453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="peselTXT" fill="WHITE" layoutX="159.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="220.814453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="dataTXT" fill="WHITE" layoutX="173.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="220.814453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="plecTXT" fill="WHITE" layoutX="159.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="220.814453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="143.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szczegóły">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

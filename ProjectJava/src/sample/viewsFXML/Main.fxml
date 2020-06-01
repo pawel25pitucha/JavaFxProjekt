@@ -2,7 +2,9 @@
 
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,15 +12,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="802.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="865.0" prefWidth="802.0" style="-fx-background-color: darkslategrey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
-      <ImageView fitHeight="858.0" fitWidth="802.0" layoutY="-75.0">
+      <ImageView fitHeight="894.0" fitWidth="802.0" layoutY="-7.0">
          <image>
             <Image url="@../pics/basketball.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="307.0" layoutY="583.0" mnemonicParsing="false" onAction="#addNewAdmin" prefHeight="33.0" prefWidth="184.0" style="-fx-background-color: darkgrey;" text="Dodaj nowego Administratora" textFill="#f8f8f8" />
-      <Text fill="#00ffc8" layoutX="236.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w panelu administratora!" wrappingWidth="330.13671875">
+      <Button layoutX="206.0" layoutY="771.0" mnemonicParsing="false" onAction="#addNewAdmin" prefHeight="33.0" prefWidth="184.0" style="-fx-background-color: darkgrey;" text="Dodaj nowego Administratora" textFill="#f8f8f8" />
+      <Text layoutX="236.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w panelu administratora!" wrappingWidth="330.13671875">
          <font>
             <Font size="24.0" />
          </font>
@@ -28,7 +30,7 @@
       <Button layoutX="491.0" layoutY="74.0" mnemonicParsing="false" onAction="#changeViewTrener" prefHeight="43.0" prefWidth="110.0" text="Trenerzy" />
       <Button layoutX="643.0" layoutY="74.0" mnemonicParsing="false" onAction="#changeViewSedzia" prefHeight="43.0" prefWidth="103.0" text="Sędziowie" />
       <Button layoutX="338.0" layoutY="74.0" mnemonicParsing="false" onAction="#changeViewSpotkanie" prefHeight="43.0" prefWidth="110.0" text="Spotkania" />
-      <BarChart fx:id="wykresPoziom" layoutX="32.0" layoutY="170.0" prefHeight="271.0" prefWidth="361.0" style="-fx-background-color: snow;" title="Ilość zawodników w przedziałach wiekowych">
+      <BarChart fx:id="wykresPoziom" layoutX="32.0" layoutY="135.0" prefHeight="271.0" prefWidth="361.0" style="-fx-background-color: snow;" title="Ilość zawodników w przedziałach wiekowych">
         <xAxis>
           <CategoryAxis fx:id="X" label="Wiek" side="BOTTOM" />
         </xAxis>
@@ -36,9 +38,9 @@
           <NumberAxis fx:id="y" label="ilość" side="LEFT" upperBound="30.0" />
         </yAxis>
       </BarChart>
-      <Button layoutX="367.0" layoutY="448.0" mnemonicParsing="false" onAction="#odswiez" text="refresh" />
+      <Button layoutX="368.0" layoutY="406.0" mnemonicParsing="false" onAction="#odswiez" prefHeight="25.0" prefWidth="67.0" text="refresh" />
       <Button layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#wyloguj" text="Logout" />
-      <BarChart fx:id="wykresDruzyn" layoutX="401.0" layoutY="170.0" prefHeight="271.0" prefWidth="382.0" style="-fx-background-color: snow;" title="Ilość drużyn">
+      <BarChart fx:id="wykresDruzyn" layoutX="410.0" layoutY="135.0" prefHeight="271.0" prefWidth="382.0" style="-fx-background-color: snow;" title="Ilość drużyn">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="x" />
         </xAxis>
@@ -46,6 +48,24 @@
           <NumberAxis fx:id="y" minorTickCount="2" side="LEFT" upperBound="30.0" />
         </yAxis>
       </BarChart>
-      <Button layoutX="346.0" layoutY="621.0" mnemonicParsing="false" onAction="#changeViewDyscyplina" style="-fx-background-color: darkgrey;" text="Dodaj dyscypline" textFill="#fff1f1" />
+      <Button layoutX="285.0" layoutY="819.0" mnemonicParsing="false" onAction="#changeViewDyscyplina" style="-fx-background-color: darkgrey;" text="Dodaj dyscypline" textFill="#fff1f1" />
+      <LineChart fx:id="wykresCen" layoutX="15.0" layoutY="440.0" prefHeight="308.0" prefWidth="382.0" style="-fx-background-color: snow;" title="Średnia cen">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button layoutX="399.0" layoutY="771.0" mnemonicParsing="false" onAction="#usunEdytujAdmin" prefHeight="33.0" prefWidth="184.0" style="-fx-background-color: darkgrey;" text="Usuń/ Edytuj Administratora" textFill="#f8f8f8" />
+      <Button layoutX="402.0" layoutY="819.0" mnemonicParsing="false" onAction="#changeViewLiga" style="-fx-background-color: darkgrey;" text="Dodaj Ligę" textFill="#fff1f1" />
+      <ScatterChart fx:id="wykresLider" layoutX="410.0" layoutY="436.0" prefHeight="314.0" prefWidth="390.0" style="-fx-background-color: snow;" title="Ilośc punktów ">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </ScatterChart>
    </children>
 </AnchorPane>

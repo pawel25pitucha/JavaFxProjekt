@@ -51,6 +51,7 @@ public class AddDruzynaController {
     private String trenerId;
 
     private ArrayList<String> dyscypliny=new ArrayList<>();
+    private ArrayList<String> ligi=new ArrayList<>();
 
 
     @FXML
@@ -72,16 +73,18 @@ public class AddDruzynaController {
         while(rs2.next()){
             dyscypliny.add(rs2.getString("Nazwa"));
         }
+        ResultSet rs3 = ConnectionDB.con.createStatement().executeQuery("SELECT Nazwa FROM Liga");
+        while(rs3.next()){
+            ligi.add(rs3.getString("Nazwa"));
+        }
         ///choice box
         dyscyplinaTXT.setPromptText("Wybierz dyscyplinę");
         dyscyplinaTXT.getItems().setAll(dyscypliny);
 
         //liga choicebox
         ligaTXT.setPromptText("Wybierz ligę");
-        ligaTXT.getItems().add("SuperLiga");
-        ligaTXT.getItems().add("1 Liga");
-        ligaTXT.getItems().add("2 Liga");
-        ligaTXT.getItems().add("3 Liga");
+        ligaTXT.getItems().setAll(ligi);
+
     }
 
     public void saveDruzyna(ActionEvent event) throws SQLException {
@@ -187,7 +190,7 @@ public class AddDruzynaController {
     public boolean checkDane() throws SQLException {
         if(dyscyplina!=null){
             if(!(nazwa.isEmpty())){
-                if(nazwa.chars().allMatch(Character::isLetter) && Character.isUpperCase(nazwa.charAt(0))){
+                if(nazwa.chars().allMatch(Character::isLetter) && Character.isUpperCase(nazwa.charAt(0)) && nazwa.substring(1).chars().allMatch(Character::isLowerCase)){
                     if(liga!=null){
                         if(table.getSelectionModel().getSelectedItem()!=null){
                             String peselTrenera=table.getSelectionModel().getSelectedItem().getPesel();

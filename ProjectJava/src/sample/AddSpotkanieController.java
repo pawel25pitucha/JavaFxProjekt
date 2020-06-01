@@ -49,6 +49,8 @@ public class AddSpotkanieController {
     private TextField cena;
     @FXML
     private DatePicker DataTXT;
+
+    private String data;
     private ObservableList<SedziaModel> oblist = FXCollections.observableArrayList();
     private ObservableList<SedziaModel> oblistFiltered = FXCollections.observableArrayList();
     private static String helper;
@@ -123,11 +125,10 @@ public class AddSpotkanieController {
         String punktyGosc = punkty2.getText();
         SedziaModel sedzia = table.getSelectionModel().getSelectedItem();
         String finalCena = cena.getText();
-        String data1 = DataTXT.getValue().format(DateTimeFormatter.ofPattern(this.dateFormat));
         String nazwa = druzyna1.getText();
         String nazwA = druzyna2.getText();
 
-        if (checkDane(nazwa, nazwA, punktyGosc, punktyGospodarz, finalCena, data1, sedzia)) {
+        if (checkDane(nazwa, nazwA, punktyGosc, punktyGospodarz, finalCena, sedzia)) {
             String peselSedzia = table.getSelectionModel().getSelectedItem().getPesel();
             if (punktyGosc == null) {
                 String sql = "INSERT INTO Spotkanie(Gospodarz_Id,Gość_Id,Sędzia_Id,Cena,Data)VALUES (?, ?, ?,?,?)";
@@ -137,7 +138,7 @@ public class AddSpotkanieController {
                     statement.setString(2, getDruzynaId(nazwa2));
                     statement.setString(3, getSedziaId(peselSedzia));
                     statement.setString(4, finalCena);
-                    statement.setString(5, data1);
+                    statement.setString(5, data);
 
                     int rowsInserted = statement.executeUpdate();
                     if (rowsInserted > 0) {
@@ -156,7 +157,7 @@ public class AddSpotkanieController {
                     statement.setString(4, finalCena);
                     statement.setString(5, punktyGospodarz);
                     statement.setString(6, punktyGosc);
-                    statement.setString(7, data1);
+                    statement.setString(7, data);
 
                     int rowsInserted = statement.executeUpdate();
                     if (rowsInserted > 0) {
@@ -191,9 +192,10 @@ public class AddSpotkanieController {
         return id;
     }
 
-    public boolean checkDane(String nazwa1, String nazwa2, String punkty1, String punkty2, String cena, String data, SedziaModel sedzia) throws SQLException, ParseException {
+    public boolean checkDane(String nazwa1, String nazwa2, String punkty1, String punkty2, String cena, SedziaModel sedzia) throws SQLException, ParseException {
         boolean nazwa1Ok = false;
         boolean nazwa2Ok = false;
+
 
         if (nazwa2.isEmpty()) {
             errorMSG.setText("Podaj nazwe gościa!");
@@ -230,10 +232,13 @@ public class AddSpotkanieController {
             errorMSG.setText("Cena musi być cyfrą!");
             return false;
         }
-        if(data.isEmpty()) {
-            errorMSG.setText("Podaj datę!");
+        if(DataTXT.getValue()!=null){
+            data = DataTXT.getValue().format(DateTimeFormatter.ofPattern(this.dateFormat));
+        }else {
+            errorMSG.setText("Wprowadź datę");
             return false;
         }
+
         if(!(isValid(data))) {
             errorMSG.setText("Data musi być w formacie : yyyy/MM/dd i odbywać się w czasie przyszłym!");
             return false;

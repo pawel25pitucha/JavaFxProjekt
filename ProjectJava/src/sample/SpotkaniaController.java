@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,6 +23,12 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 
 public class SpotkaniaController {
@@ -52,7 +59,16 @@ public class SpotkaniaController {
     @FXML
     private Text vs;
     @FXML
+    private TextField cena1TXT;
+    @FXML
+    private TextField cena2TXT;
+    @FXML
     private TextField searchTXT;
+    @FXML
+    private DatePicker data1TXT;
+    @FXML
+    private DatePicker data2TXT;
+    private String dateFormat="yyyy-MM-dd";
     public static SpotkanieModel selected;
     private String search;
 
@@ -189,10 +205,149 @@ public class SpotkaniaController {
             }
             if(!oblistFiltered.isEmpty()){
                 //table.getItems().clear();
-                table.setItems(oblistFiltered);
+                table.setItems(oblistFiltered);;
             }
         } else {
             initialize();
         }
     }
+    public void filtruj() throws ParseException {
+        DateFormat sdf = new SimpleDateFormat(
+                "yyyy-MM-dd");
+
+        int cena1 = 0,cena2 = 0;
+        Date data1 = null,data2= null;
+
+        if(cena1TXT.getText()!=null && !(cena1TXT.getText().isEmpty())){
+            cena1=Integer.parseInt(cena1TXT.getText());
+        }
+        if(cena2TXT.getText()!=null && !(cena2TXT.getText().isEmpty())){
+            cena2=Integer.parseInt(cena2TXT.getText());
+        }
+        if(data1TXT.getValue()!=null){
+            data1=sdf.parse(data1TXT.getValue().toString());
+        }
+        if(data2TXT.getValue()!=null){
+            data2=sdf.parse(data2TXT.getValue().toString());
+        }
+
+        if(oblistFiltered.size()==0){
+            if(data1!=null && data2!=null){
+                for(SpotkanieModel spotkanie : oblist){
+                    Date data=sdf.parse(spotkanie.getData());
+                    if(data.before(data2) && data.after(data1)){
+                        oblistFiltered.add(spotkanie);
+                    }
+                }
+            }else if(data1==null && data2!=null){
+                for(SpotkanieModel spotkanie : oblist){
+                    Date data=sdf.parse(spotkanie.getData());
+                    if(data.before(data2)){
+                        oblistFiltered.add(spotkanie);
+                    }
+                }
+            }else if(data2==null && data1!=null){
+                System.out.println("hejhejadmin");
+                for(SpotkanieModel spotkanie : oblist){
+                    Date data=sdf.parse(spotkanie.getData());
+                    if(data.after(data1)){
+                        oblistFiltered.add(spotkanie);
+                    }
+                }
+            }else{
+                for(SpotkanieModel spotkanie : oblist){
+                        oblistFiltered.add(spotkanie);
+                }
+            }
+        }else{
+            if(data1!=null && data2!=null){
+                for(SpotkanieModel spotkanie : oblist){
+                    Date data=sdf.parse(spotkanie.getData());
+                    if(data.after(data2) && data.before(data1)){
+                        oblistFiltered.remove(spotkanie);
+                    }
+                }
+            }else if(data1==null && data2!=null){
+                for(SpotkanieModel spotkanie : oblist){
+                    Date data=sdf.parse(spotkanie.getData());
+                    if(data.after(data2)){
+                        oblistFiltered.remove(spotkanie);
+                    }
+                }
+            }else if(data2==null && data1!=null){
+                for(SpotkanieModel spotkanie : oblist){
+                    Date data=sdf.parse(spotkanie.getData());
+                    if(data.before(data1)){
+                        oblistFiltered.remove(spotkanie);
+                    }
+                }
+            }
+        }
+
+        if(oblistFiltered.size()==0){
+            if(cena1==0 && cena2==0){
+                for(SpotkanieModel spotkanie : oblist){
+                        oblistFiltered.add(spotkanie);
+                }
+            }else if(cena1==0){
+                for(SpotkanieModel spotkanie : oblist){
+                    if(Integer.parseInt(spotkanie.getCena())<=cena2){
+                        oblistFiltered.add(spotkanie);
+                    }
+                }
+            }else if(cena2==0){
+                for(SpotkanieModel spotkanie : oblist){
+                    if(Integer.parseInt(spotkanie.getCena())>=cena1){
+                        oblistFiltered.add(spotkanie);
+                    }
+                }
+            }else{
+                for(SpotkanieModel spotkanie : oblist){
+                    if(Integer.parseInt(spotkanie.getCena())>=cena1 && Integer.parseInt(spotkanie.getCena())<=cena2){
+                        oblistFiltered.add(spotkanie);
+                    }
+                }
+            }
+        }else{
+            if(cena1==0 && cena2==0){
+
+            }else if(cena1==0){
+                for(SpotkanieModel spotkanie : oblist){
+                    if(Integer.parseInt(spotkanie.getCena())>cena2){
+                        oblistFiltered.remove(spotkanie);
+                    }
+                }
+            }else if(cena2==0){
+                for(SpotkanieModel spotkanie : oblist){
+                    if(Integer.parseInt(spotkanie.getCena())<cena1){
+                        oblistFiltered.remove(spotkanie);
+                    }
+                }
+            }else{
+                for(SpotkanieModel spotkanie : oblist){
+                    if(Integer.parseInt(spotkanie.getCena())<cena1 || Integer.parseInt(spotkanie.getCena())>cena2){
+                        oblistFiltered.remove(spotkanie);
+                    }
+                }
+            }
+
+        }
+
+
+        table.setItems(oblistFiltered);
+    }
+
+
+
+    public void clearFiltr(){
+        cena1TXT.setText(null);
+        cena2TXT.setText(null);
+        data1TXT.setValue(null);
+        data2TXT.setValue(null);
+        table.getItems().clear();
+        table.setItems(oblist);
+        oblistFiltered.clear();
+    }
+
+
 }
